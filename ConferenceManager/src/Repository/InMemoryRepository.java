@@ -22,7 +22,7 @@ public class InMemoryRepository implements IRepository {
 
     @Override
     public Boolean removeParticipantById(int id) {
-        // Step 1: Find the INDEX where the participant is located
+        
         int indexToRemove = -1;
         for (int i = 0; i < size; i++) {
             if (participants[i] != null &&
@@ -32,17 +32,17 @@ public class InMemoryRepository implements IRepository {
             }
         }
 
-        // Step 2: If not found, return false
+        
         if (indexToRemove == -1) {
             return false;
         }
 
-        // Step 3: Shift elements left to remove the element
+        
         for (int i = indexToRemove; i < size - 1; i++) {
             participants[i] = participants[i + 1];
         }
 
-        // Step 4: Clear last element and decrease size
+        
         participants[size - 1] = null;
         size--;
 
