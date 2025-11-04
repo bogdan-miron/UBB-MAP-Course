@@ -7,14 +7,17 @@ import model.state.IExecutionStack;
 import model.state.ProgramState;
 import model.state.SymbolTable;
 import model.statement.IStatement;
+import repository.IRepository;
 
 public class Controller {
     private ProgramState state;
+    private IRepository repo;
 
-    public Controller(IStatement program) { // the program will be a compound statement
+    public Controller(IStatement program, IRepository repo) { // the program will be a compound statement
         IExecutionStack exeStack = new ExecutionStack();
         exeStack.push(program);
         this.state = new ProgramState(exeStack, new SymbolTable());
+        this.repo = repo;
     }
 
     public void oneStep() throws ExecutionStackException, TypeException {
@@ -26,6 +29,7 @@ public class Controller {
 
         IStatement statement = stack.pop();
         state = statement.execute(state);
+        repo.addState(state);
     }
 
     public void allSteps() throws ExecutionStackException, TypeException {
@@ -38,5 +42,9 @@ public class Controller {
 
     public ProgramState getProgramState() {
         return state;
+    }
+
+    public IRepository getRepo() {
+        return repo;
     }
 }

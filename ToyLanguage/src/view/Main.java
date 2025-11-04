@@ -7,10 +7,13 @@ import model.expression.ArithmeticExpression;
 import model.expression.RelationalExpression;
 import model.expression.ValueExpression;
 import model.expression.VariableExpression;
+import model.state.ProgramState;
 import model.statement.*;
 import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.IntValue;
+import repository.IRepository;
+import repository.InMemoryRepository;
 
 public class Main {
     public static void main(String[] args) {
@@ -50,7 +53,8 @@ public class Main {
     }
 
     private static void runProgram(IStatement program) {
-        Controller controller = new Controller(program);
+        IRepository repo = new InMemoryRepository();
+        Controller controller = new Controller(program, repo);
 
         try {
             controller.allSteps();
@@ -59,6 +63,12 @@ public class Main {
             for (IValue value: controller.getProgramState().getOutput().getOutput()){
                 System.out.println(value);
             }
+
+            /*
+            for (ProgramState state : repo.getAllStates()){
+                ; // check all program states
+            }
+             */
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
