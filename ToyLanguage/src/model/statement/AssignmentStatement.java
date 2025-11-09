@@ -16,7 +16,21 @@ public class AssignmentStatement implements IStatement{
 
     @Override
     public ProgramState execute(ProgramState state) throws TypeException {
+
+        // Check if variable is already declared
+        if (!state.getSymTable().isDefined(variableName)) {
+            throw new TypeException("Variable " + variableName + " is not declared");
+        }
+
         IValue value = expression.evaluate(state.getSymTable());
+
+        // Type checking
+        if (!state.getSymTable().getType(variableName).equals(value.getType())) {
+            throw new TypeException("Type mismatch: cannot assign " + value.getType() +
+                    " to variable " + variableName + " of type " +
+                    state.getSymTable().getType(variableName));
+        }
+
         state.getSymTable().update(variableName, value);
         return state;
     }
