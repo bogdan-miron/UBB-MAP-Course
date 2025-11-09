@@ -87,6 +87,13 @@ public class InMemoryRepository implements IRepository{
             writer.println("=".repeat(80));
             writer.println();
 
+            // Log File Table
+            writer.println("-".repeat(80));
+            writer.println("FILE TABLE:");
+            writer.println("-".repeat(80));
+            writer.println(currentState.getFileTable().toString());
+            writer.println();
+
         } catch (IOException e) {
             throw new RepositoryException("Error writing to log file: " + e.getMessage());
         }

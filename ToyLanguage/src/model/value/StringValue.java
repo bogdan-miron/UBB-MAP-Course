@@ -33,4 +33,9 @@ public class StringValue implements IValue {
 
         return false;
     }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
 }
