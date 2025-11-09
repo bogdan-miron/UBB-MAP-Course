@@ -1,6 +1,7 @@
 package controller;
 
 import model.exception.ExecutionStackException;
+import model.exception.RepositoryException;
 import model.exception.TypeException;
 import model.state.ExecutionStack;
 import model.state.IExecutionStack;
@@ -11,32 +12,50 @@ import repository.IRepository;
 
 public class Controller {
     private ProgramState state;
-    private IRepository repo;
+    private final IRepository repo;
+    private final boolean logSteps;
 
-    public Controller(IStatement program, IRepository repo) { // the program will be a compound statement
+    public Controller(IStatement program, IRepository repo, boolean logSteps) {
+        this.logSteps = logSteps;
+        // the program will be a compound statement
         IExecutionStack exeStack = new ExecutionStack();
         exeStack.push(program);
         this.state = new ProgramState(exeStack, new SymbolTable());
         this.repo = repo;
+        repo.addState(this.state);
     }
 
-    public void oneStep() throws ExecutionStackException, TypeException {
+    public Controller(IStatement program, IRepository repo) {
+        this(program, repo, false);
+    }
+
+    public void oneStep() throws ExecutionStackException, TypeException, RepositoryException {
         IExecutionStack stack = state.getExeStack();
 
         if (((ExecutionStack)stack).isEmpty()) {
             throw new RuntimeException("Program has finished execution");
         }
 
+        if (logSteps) {
+            repo.logPrgStateExec();
+        }
+
         IStatement statement = stack.pop();
         state = statement.execute(state);
         repo.addState(state);
+
     }
 
-    public void allSteps() throws ExecutionStackException, TypeException {
+    public void allSteps() throws ExecutionStackException, TypeException, RepositoryException {
         IExecutionStack stack = state.getExeStack();
         while(!stack.isEmpty()){
             oneStep();
             // System.out.println(state.getSymTable().toString());
+        }
+
+        // Log the final state after execution completes
+        if (logSteps){
+            repo.logPrgStateExec();
         }
     }
 

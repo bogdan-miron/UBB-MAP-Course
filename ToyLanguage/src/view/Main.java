@@ -9,8 +9,8 @@ import model.expression.ValueExpression;
 import model.expression.VariableExpression;
 import model.state.ProgramState;
 import model.statement.*;
-import model.type.BoolType;
 import model.type.IntType;
+import model.type.BoolType;
 import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.IntValue;
@@ -38,8 +38,8 @@ public class Main {
                 )
         );
 
-        System.out.println("=== Test 1 ===");
-        runProgram(prog1);
+        System.out.println("=== Test 1: Simple Arithmetic with Logging ===");
+        runProgram(prog1, "test1_log.txt", true);
 
         // Test Program 2: int x; x = 10; if (x > 5) then print(100) else print(0)
         IStatement prog2 = new CompoundStatement(
@@ -58,60 +58,78 @@ public class Main {
                 )
         );
 
-        System.out.println("\n=== Test 2 ===");
-        runProgram(prog2);
+        System.out.println("\n=== Test 2: If Statement with Logging ===");
+        runProgram(prog2, "test2_log.txt", true);
 
-        // Test Program 3: Error case - assignment without declaration
-        IStatement prog3 = new AssignmentStatement("z", new ValueExpression(new IntValue(42)));
-
-        System.out.println("\n=== Test 3 ===");
-        runProgram(prog3);
-
-        // Test Program 4: Error case - type mismatch
-        IStatement prog4 = new CompoundStatement(
+        // Test Program 3: Complex program with multiple variables
+        IStatement prog3 = new CompoundStatement(
                 new DeclarationStatement("a", new IntType()),
-                new AssignmentStatement("a", new ValueExpression(new BooleanValue(true)))
-        );
-
-        System.out.println("\n=== Test 4 ===");
-        runProgram(prog4);
-
-        // Test Program 5: Boolean type declaration
-        IStatement prog5 = new CompoundStatement(
-                new DeclarationStatement("flag", new BoolType()),
                 new CompoundStatement(
-                        new AssignmentStatement("flag", new ValueExpression(new BooleanValue(true))),
-                        new PrintStatement(new VariableExpression("flag"))
+                        new DeclarationStatement("b", new IntType()),
+                        new CompoundStatement(
+                                new AssignmentStatement("a", new ValueExpression(new IntValue(10))),
+                                new CompoundStatement(
+                                        new AssignmentStatement("b", new ValueExpression(new IntValue(20))),
+                                        new CompoundStatement(
+                                                new PrintStatement(new VariableExpression("a")),
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VariableExpression("b")),
+                                                        new PrintStatement(new ArithmeticExpression(
+                                                                new VariableExpression("a"),
+                                                                new VariableExpression("b"),
+                                                                "+"
+                                                        ))
+                                                )
+                                        )
+                                )
+                        )
                 )
         );
 
-        System.out.println("\n=== Test 5 ===");
-        runProgram(prog5);
+        System.out.println("\n=== Test 3: Complex Program with Logging ===");
+        runProgram(prog3, "test3_log.txt", true);
+
+        // Test Program 4: Boolean operations
+        IStatement prog4 = new CompoundStatement(
+                new DeclarationStatement("flag", new BoolType()),
+                new CompoundStatement(
+                        new AssignmentStatement("flag", new ValueExpression(new BooleanValue(true))),
+                        new IfStatement(
+                                new VariableExpression("flag"),
+                                new PrintStatement(new ValueExpression(new IntValue(1))),
+                                new PrintStatement(new ValueExpression(new IntValue(0)))
+                        )
+                )
+        );
+
+        System.out.println("\n=== Test 4: Boolean Operations without Logging ===");
+        runProgram(prog4, "test4_log.txt", false);
     }
 
-    private static void runProgram(IStatement program) {
-        IRepository repo = new InMemoryRepository();
-        Controller controller = new Controller(program, repo);
+    private static void runProgram(IStatement program, String logFile, boolean enableLogging) {
+        InMemoryRepository repo = new InMemoryRepository(logFile);
 
         try {
+            // Clear the log file before starting
+            if (enableLogging) {
+                repo.clearLogFile();
+            }
+
+            Controller controller = new Controller(program, repo, enableLogging);
             controller.allSteps();
 
-            System.out.println("\nFinal Output:\n");
+            System.out.println("Final Output:");
             for (IValue value: controller.getProgramState().getOutput().getOutput()){
-                System.out.println(value);
+                System.out.println("  " + value);
             }
 
-            /*
-            for (ProgramState state : repo.getAllStates()){
-                ; // check all program states
+            if (enableLogging) {
+                System.out.println("(Execution logged to " + logFile + ")");
             }
-             */
-
         }
         catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
 }
-
