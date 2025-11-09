@@ -1,5 +1,8 @@
 package model.type;
 
+import model.value.IValue;
+import model.value.IntValue;
+
 public class IntType implements IType {
     @Override
     public boolean equals(Object o) {
@@ -11,5 +14,10 @@ public class IntType implements IType {
     @Override
     public String toString() {
         return "int";
+    }
+
+    @Override
+    public IValue defaultValue() {
+        return new IntValue(0);
     }
 }

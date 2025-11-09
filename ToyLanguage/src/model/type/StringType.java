@@ -1,23 +1,24 @@
 package model.type;
 
-import model.value.BooleanValue;
 import model.value.IValue;
+import model.value.StringValue;
 
-public class BoolType implements IType{
+public class StringType implements IType {
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        return o instanceof BoolType;
+        return o instanceof StringType;
     }
 
     @Override
-    public String toString() {
-        return "bool";
+    public String toString(){
+        return "String";
     }
 
     @Override
     public IValue defaultValue() {
-        return new BooleanValue(false);
+        return new StringValue("");
     }
 }

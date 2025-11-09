@@ -22,20 +22,10 @@ public class DeclarationStatement implements IStatement {
             throw new TypeException("Variable " + variableName + " is already defined");
         }
 
-        IValue defaultValue = getDefaultValue(type);
+        IValue defaultValue = type.defaultValue();
         programState.getSymTable().update(variableName, defaultValue);
 
         return programState;
-    }
-
-    private IValue getDefaultValue(IType type) throws TypeException {
-        if (type instanceof model.type.IntType) {
-            return new IntValue(0);
-        } else if (type instanceof model.type.BoolType) {
-            return new BooleanValue(false);
-        } else {
-            throw new TypeException("Unknown type: " + type);
-        }
     }
 
     @Override
