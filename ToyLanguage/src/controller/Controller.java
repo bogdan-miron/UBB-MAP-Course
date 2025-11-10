@@ -18,6 +18,7 @@ public class Controller {
 
     public Controller(IStatement program, IRepository repo, boolean logSteps) {
         this.logSteps = logSteps;
+
         // the program will be a compound statement
         IExecutionStack exeStack = new ExecutionStack();
         exeStack.push(program);

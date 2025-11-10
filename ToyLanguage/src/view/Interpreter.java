@@ -5,10 +5,6 @@ import model.expression.ArithmeticExpression;
 import model.expression.RelationalExpression;
 import model.expression.ValueExpression;
 import model.expression.VariableExpression;
-import model.state.ExecutionStack;
-import model.state.FileTable;
-import model.state.ProgramState;
-import model.state.SymbolTable;
 import model.statement.*;
 import model.type.IntType;
 import model.type.StringType;
@@ -38,10 +34,7 @@ public class Interpreter {
                 )
         );
 
-        ProgramState prg1 = new ProgramState(new ExecutionStack(), new SymbolTable(), new FileTable());
-        prg1.getExeStack().push(ex1);
         IRepository repo1 = new InMemoryRepository("log1.txt");
-        repo1.addState(prg1);
         Controller ctr1 = new Controller(ex1, repo1, true);
 
         // Example 2: int x; x = 10; if (x > 5) then print(100) else print(0)
@@ -61,13 +54,10 @@ public class Interpreter {
                 )
         );
 
-        ProgramState prg2 = new ProgramState(new ExecutionStack(), new SymbolTable(), new FileTable());
-        prg2.getExeStack().push(ex2);
         IRepository repo2 = new InMemoryRepository("log2.txt");
-        repo2.addState(prg2);
         Controller ctr2 = new Controller(ex2, repo2, true);
 
-        // Example 3: File operations - string filename; filename = "test.txt"; openRFile(filename); int x; readFile(filename, x); print(x); closeRFile(filename)
+        // Example 3: File operations
         IStatement ex3 = new CompoundStatement(
                 new DeclarationStatement("filename", new StringType()),
                 new CompoundStatement(
@@ -94,10 +84,7 @@ public class Interpreter {
                 )
         );
 
-        ProgramState prg3 = new ProgramState(new ExecutionStack(), new SymbolTable(), new FileTable());
-        prg3.getExeStack().push(ex3);
         IRepository repo3 = new InMemoryRepository("log3.txt");
-        repo3.addState(prg3);
         Controller ctr3 = new Controller(ex3, repo3, true);
 
         // Create text menu and add commands
