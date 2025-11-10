@@ -5,10 +5,10 @@ import model.value.IValue;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Output implements IOutput{
+public class Output implements IOutput {
     private List<IValue> out;
 
-    public Output(){
+    public Output() {
         this.out = new ArrayList<IValue>();
     }
 
@@ -18,7 +18,7 @@ public class Output implements IOutput{
     }
 
     @Override
-    public void add(IValue value){
+    public void add(IValue value) {
         this.out.add(value);
     }
 }

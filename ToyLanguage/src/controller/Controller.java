@@ -9,6 +9,7 @@ import model.state.ProgramState;
 import model.state.SymbolTable;
 import model.statement.IStatement;
 import repository.IRepository;
+import repository.InMemoryRepository;
 
 public class Controller {
     private ProgramState state;
@@ -23,6 +24,15 @@ public class Controller {
         this.state = new ProgramState(exeStack, new SymbolTable());
         this.repo = repo;
         repo.addState(this.state);
+
+        // Clear log file if logging is enabled
+        if (this.logSteps) {
+            try {
+                ((InMemoryRepository) repo).clearLogFile();
+            } catch (RepositoryException e) {
+                System.err.println("Warning: Could not clear log file: " + e.getMessage());
+            }
+        }
     }
 
     public Controller(IStatement program, IRepository repo) {
@@ -32,7 +42,7 @@ public class Controller {
     public void oneStep() throws ExecutionStackException, TypeException, RepositoryException {
         IExecutionStack stack = state.getExeStack();
 
-        if (((ExecutionStack)stack).isEmpty()) {
+        if (((ExecutionStack) stack).isEmpty()) {
             throw new RuntimeException("Program has finished execution");
         }
 
@@ -48,13 +58,13 @@ public class Controller {
 
     public void allSteps() throws ExecutionStackException, TypeException, RepositoryException {
         IExecutionStack stack = state.getExeStack();
-        while(!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             oneStep();
             // System.out.println(state.getSymTable().toString());
         }
 
         // Log the final state after execution completes
-        if (logSteps){
+        if (logSteps) {
             repo.logPrgStateExec();
         }
     }

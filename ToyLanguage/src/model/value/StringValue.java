@@ -16,7 +16,7 @@ public class StringValue implements IValue {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return value;
     }
 

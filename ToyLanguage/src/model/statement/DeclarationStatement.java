@@ -18,7 +18,7 @@ public class DeclarationStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState programState) throws TypeException {
-        if (programState.getSymTable().isDefined(variableName)){
+        if (programState.getSymTable().isDefined(variableName)) {
             throw new TypeException("Variable " + variableName + " is already defined");
         }
 

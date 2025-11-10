@@ -594,11 +594,10 @@ public class BasicTests {
             controller.allSteps();
 
             System.out.println("Output:");
-            for (IValue value: controller.getProgramState().getOutput().getOutput()){
+            for (IValue value : controller.getProgramState().getOutput().getOutput()) {
                 System.out.println("  " + value);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("  ERROR: " + e.getMessage());
         }
     }

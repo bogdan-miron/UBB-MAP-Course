@@ -17,7 +17,7 @@ public class ProgramState {
         this(exeStack, symTable, fileTable, new Output());
     }
 
-    public ProgramState(IExecutionStack exeStack, ISymbolTable symTable){
+    public ProgramState(IExecutionStack exeStack, ISymbolTable symTable) {
         this(exeStack, symTable, new FileTable(), new Output());
     }
 

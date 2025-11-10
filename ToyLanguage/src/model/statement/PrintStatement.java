@@ -5,10 +5,10 @@ import model.expression.IExpression;
 import model.state.ProgramState;
 import model.value.IValue;
 
-public class PrintStatement implements IStatement{
+public class PrintStatement implements IStatement {
     private final IExpression expression;
 
-    public PrintStatement(IExpression expression){
+    public PrintStatement(IExpression expression) {
         this.expression = expression;
     }
 
@@ -20,7 +20,7 @@ public class PrintStatement implements IStatement{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "print(" + expression + ")";
     }
 }

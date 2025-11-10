@@ -21,7 +21,7 @@ public class IntValue implements IValue {
     }
 
     @Override
-    public IType getType(){
+    public IType getType() {
         return new IntType();
     }
 

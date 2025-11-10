@@ -13,7 +13,7 @@ public class StringType implements IType {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "String";
     }
 

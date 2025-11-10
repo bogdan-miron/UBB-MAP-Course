@@ -5,11 +5,11 @@ import model.expression.IExpression;
 import model.state.ProgramState;
 import model.value.IValue;
 
-public class AssignmentStatement implements IStatement{
+public class AssignmentStatement implements IStatement {
     private final String variableName;
     private final IExpression expression;
 
-    public AssignmentStatement(String variableName, IExpression expression){
+    public AssignmentStatement(String variableName, IExpression expression) {
         this.variableName = variableName;
         this.expression = expression;
     }
@@ -36,7 +36,7 @@ public class AssignmentStatement implements IStatement{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return variableName + " = " + expression;
     }
 }

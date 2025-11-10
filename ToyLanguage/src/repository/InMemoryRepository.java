@@ -10,17 +10,17 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryRepository implements IRepository{
+public class InMemoryRepository implements IRepository {
 
     private final List<ProgramState> programStates;
     private final String filename;
 
-    public InMemoryRepository(String filename){
+    public InMemoryRepository(String filename) {
         this.filename = filename;
         this.programStates = new ArrayList<ProgramState>();
     }
 
-    public InMemoryRepository(){
+    public InMemoryRepository() {
         this("log.txt");
     }
 
@@ -33,8 +33,8 @@ public class InMemoryRepository implements IRepository{
     }
 
     @Override
-    public ProgramState getCurrentState(){
-        if (programStates.isEmpty()){
+    public ProgramState getCurrentState() {
+        if (programStates.isEmpty()) {
             return null;
         }
         return programStates.get(programStates.size() - 1);

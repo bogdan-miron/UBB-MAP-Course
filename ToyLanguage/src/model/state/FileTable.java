@@ -15,7 +15,7 @@ public class FileTable implements IFileTable {
 
     @Override
     public boolean isDefined(StringValue path) {
-        return  fileTable.containsKey(path);
+        return fileTable.containsKey(path);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class FileTable implements IFileTable {
     }
 
     @Override
-    public void add(StringValue path, BufferedReader fd){
+    public void add(StringValue path, BufferedReader fd) {
         fileTable.put(path, fd);
     }
 

@@ -14,30 +14,30 @@ public class SymbolTable implements ISymbolTable {
     }
 
     @Override
-    public boolean isDefined(String variableName){
+    public boolean isDefined(String variableName) {
         return symTable.containsKey(variableName);
     }
 
     @Override
-    public IType getType(String variableName){
-        if (!isDefined(variableName)){
+    public IType getType(String variableName) {
+        if (!isDefined(variableName)) {
             throw new IllegalArgumentException(variableName + " is not defined");
         }
         return symTable.get(variableName).getType();
     }
 
     @Override
-    public void update(String variableName, IValue value){
+    public void update(String variableName, IValue value) {
         symTable.put(variableName, value);
     }
 
     @Override
-    public IValue lookup(String variableName){
+    public IValue lookup(String variableName) {
         return symTable.get(variableName);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         if (symTable.isEmpty()) {
             return "SymbolTable: {}";
         }

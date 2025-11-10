@@ -22,11 +22,11 @@ public class ArithmeticExpression implements IExpression {
         IValue leftValue = left.evaluate(symbolTable);
         IValue rightValue = right.evaluate(symbolTable);
 
-        if (!(leftValue instanceof IntValue)){
+        if (!(leftValue instanceof IntValue)) {
             throw new TypeException("Type mismatch", new IntType(), leftValue.getType());
         }
 
-        if (!(rightValue instanceof IntValue)){
+        if (!(rightValue instanceof IntValue)) {
             throw new TypeException("Type mismatch", new IntType(), rightValue.getType());
         }
 
@@ -58,7 +58,7 @@ public class ArithmeticExpression implements IExpression {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "(" + left.toString() + " " + operator + " " + right.toString() + ")";
     }
 }

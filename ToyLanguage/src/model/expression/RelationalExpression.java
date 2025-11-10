@@ -22,12 +22,12 @@ public class RelationalExpression implements IExpression {
         IValue leftValue = left.evaluate(symbolTable);
         IValue rightValue = right.evaluate(symbolTable);
 
-        if (!(leftValue instanceof IntValue) || !(rightValue instanceof IntValue)){
+        if (!(leftValue instanceof IntValue) || !(rightValue instanceof IntValue)) {
             throw new TypeException("Relational expressions require integer operands");
         }
 
-        int leftInt = ((IntValue)leftValue).getValue();
-        int rightInt = ((IntValue)rightValue).getValue();
+        int leftInt = ((IntValue) leftValue).getValue();
+        int rightInt = ((IntValue) rightValue).getValue();
 
         boolean result;
         switch (operator) {
@@ -56,7 +56,7 @@ public class RelationalExpression implements IExpression {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "(" + left.toString() + " " + operator + " " + right.toString() + ")";
     }
 }

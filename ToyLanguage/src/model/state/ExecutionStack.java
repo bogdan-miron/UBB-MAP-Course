@@ -1,4 +1,5 @@
 package model.state;
+
 import model.exception.ExecutionStackException;
 import model.statement.IStatement;
 
@@ -7,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-public class ExecutionStack implements IExecutionStack{
+public class ExecutionStack implements IExecutionStack {
     private Stack<IStatement> stack;
 
     public ExecutionStack() {

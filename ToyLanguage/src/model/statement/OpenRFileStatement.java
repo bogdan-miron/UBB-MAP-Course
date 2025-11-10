@@ -23,20 +23,20 @@ public class OpenRFileStatement implements IStatement {
     public ProgramState execute(ProgramState programState) throws TypeException {
         IValue value = expression.evaluate(programState.getSymTable());
 
-        if (!value.getType().equals(new StringType())){
+        if (!value.getType().equals(new StringType())) {
             throw new TypeException("OpenRFile: expression must evaluate to a string");
         }
 
         StringValue filename = (StringValue) value;
 
-        if (programState.getFileTable().isDefined(filename)){
+        if (programState.getFileTable().isDefined(filename)) {
             throw new TypeException("OpenRFile: filename" + filename + "already opened");
         }
 
         try {
             BufferedReader fileDescriptor = new BufferedReader(new FileReader(filename.getValue()));
             programState.getFileTable().add(filename, fileDescriptor);
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new TypeException("OpenRFile: Could not open filename " + filename);
         }
 

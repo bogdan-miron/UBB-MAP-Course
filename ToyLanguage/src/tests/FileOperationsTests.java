@@ -127,15 +127,14 @@ public class FileOperationsTests {
             controller.allSteps();
 
             System.out.println("Final Output:");
-            for (IValue value: controller.getProgramState().getOutput().getOutput()){
+            for (IValue value : controller.getProgramState().getOutput().getOutput()) {
                 System.out.println("  " + value);
             }
 
             if (enableLogging) {
                 System.out.println("(Execution logged to " + logFile + ")");
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
     }

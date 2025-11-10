@@ -6,7 +6,7 @@ import model.state.ProgramState;
 import model.value.BooleanValue;
 import model.value.IValue;
 
-public class IfStatement implements IStatement{
+public class IfStatement implements IStatement {
     private final IExpression condition;
     private final IStatement thenStatement;
     private final IStatement elseStatement;
@@ -17,7 +17,7 @@ public class IfStatement implements IStatement{
         this.elseStatement = elseStatement;
     }
 
-    public ProgramState execute(ProgramState state) throws TypeException{
+    public ProgramState execute(ProgramState state) throws TypeException {
         IValue condValue = condition.evaluate(state.getSymTable());
 
         if (!(condValue instanceof BooleanValue)) {
@@ -26,10 +26,9 @@ public class IfStatement implements IStatement{
 
         boolean condBool = ((BooleanValue) condValue).getValue();
 
-        if (condBool){
+        if (condBool) {
             state.getExeStack().push(thenStatement);
-        }
-        else{
+        } else {
             state.getExeStack().push(elseStatement);
         }
 
