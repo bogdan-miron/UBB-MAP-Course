@@ -7,17 +7,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class InMemoryRepository implements IRepository {
 
-    private final List<ProgramState> programStates;
+    private ProgramState currentProgramState;
     private final String filename;
 
     public InMemoryRepository(String filename) {
         this.filename = filename;
-        this.programStates = new ArrayList<ProgramState>();
+        this.currentProgramState = null;
     }
 
     public InMemoryRepository() {
@@ -25,30 +23,21 @@ public class InMemoryRepository implements IRepository {
     }
 
     @Override
-    public void addState(ProgramState state) {
+    public void setProgramState(ProgramState state) {
         if (state == null) {
-            throw new IllegalArgumentException("Cannot add null state to repository");
+            throw new IllegalArgumentException("Cannot set null state in repository");
         }
-        programStates.add(state);
+        this.currentProgramState = state;
     }
 
     @Override
-    public ProgramState getCurrentState() {
-        if (programStates.isEmpty()) {
-            return null;
-        }
-        return programStates.get(programStates.size() - 1);
-    }
-
-    @Override
-    public List<ProgramState> getAllStates() {
-        return programStates;
+    public ProgramState getProgramState() {
+        return currentProgramState;
     }
 
     @Override
     public void logPrgStateExec() throws RepositoryException {
-        ProgramState currentState = getCurrentState();
-        if (currentState == null) {
+        if (currentProgramState == null) {
             throw new RepositoryException("No program state to log");
         }
 
@@ -62,25 +51,25 @@ public class InMemoryRepository implements IRepository {
             writer.println("-".repeat(80));
             writer.println("EXECUTION STACK:");
             writer.println("-".repeat(80));
-            writer.println(currentState.getExeStack().toString());
+            writer.println(currentProgramState.getExeStack().toString());
             writer.println();
 
             // Log Symbol Table
             writer.println("-".repeat(80));
             writer.println("SYMBOL TABLE:");
             writer.println("-".repeat(80));
-            writer.println(currentState.getSymTable().toString());
+            writer.println(currentProgramState.getSymTable().toString());
             writer.println();
 
             // Log Output
             writer.println("-".repeat(80));
             writer.println("OUTPUT:");
             writer.println("-".repeat(80));
-            if (currentState.getOutput().getOutput().isEmpty()) {
+            if (currentProgramState.getOutput().getOutput().isEmpty()) {
                 writer.println("  [Empty]");
             } else {
-                for (int i = 0; i < currentState.getOutput().getOutput().size(); i++) {
-                    writer.println("  [" + i + "] " + currentState.getOutput().getOutput().get(i));
+                for (int i = 0; i < currentProgramState.getOutput().getOutput().size(); i++) {
+                    writer.println("  [" + i + "] " + currentProgramState.getOutput().getOutput().get(i));
                 }
             }
             writer.println();
@@ -91,13 +80,12 @@ public class InMemoryRepository implements IRepository {
             writer.println("-".repeat(80));
             writer.println("FILE TABLE:");
             writer.println("-".repeat(80));
-            writer.println(currentState.getFileTable().toString());
+            writer.println(currentProgramState.getFileTable().toString());
             writer.println();
 
         } catch (IOException e) {
             throw new RepositoryException("Error writing to log file: " + e.getMessage());
         }
-
     }
 
     public void clearLogFile() throws RepositoryException {
@@ -110,5 +98,4 @@ public class InMemoryRepository implements IRepository {
             throw new RepositoryException("Error clearing log file: " + e.getMessage());
         }
     }
-
 }

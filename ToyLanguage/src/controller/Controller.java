@@ -24,7 +24,7 @@ public class Controller {
         exeStack.push(program);
         this.state = new ProgramState(exeStack, new SymbolTable());
         this.repo = repo;
-        repo.addState(this.state);
+        repo.setProgramState(this.state);
 
         // Clear log file if logging is enabled
         if (this.logSteps) {
@@ -53,7 +53,7 @@ public class Controller {
 
         IStatement statement = stack.pop();
         state = statement.execute(state);
-        repo.addState(state);
+        repo.setProgramState(state);
 
     }
 
@@ -61,7 +61,6 @@ public class Controller {
         IExecutionStack stack = state.getExeStack();
         while (!stack.isEmpty()) {
             oneStep();
-            // System.out.println(state.getSymTable().toString());
         }
 
         // Log the final state after execution completes
