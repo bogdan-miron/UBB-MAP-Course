@@ -18,7 +18,7 @@ public class IfStatement implements IStatement {
     }
 
     public ProgramState execute(ProgramState state) throws TypeException {
-        IValue condValue = condition.evaluate(state.getSymTable());
+        IValue condValue = condition.evaluate(state.getSymTable(), state.getHeap());
 
         if (!(condValue instanceof BooleanValue)) {
             throw new TypeException("If statement condition is not a boolean");

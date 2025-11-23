@@ -1,6 +1,7 @@
 package model.expression;
 
 import model.exception.TypeException;
+import model.state.IHeap;
 import model.state.ISymbolTable;
 import model.value.BooleanValue;
 import model.value.IValue;
@@ -18,9 +19,9 @@ public class RelationalExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(ISymbolTable symbolTable) throws TypeException {
-        IValue leftValue = left.evaluate(symbolTable);
-        IValue rightValue = right.evaluate(symbolTable);
+    public IValue evaluate(ISymbolTable symbolTable, IHeap heap) throws TypeException {
+        IValue leftValue = left.evaluate(symbolTable, heap);
+        IValue rightValue = right.evaluate(symbolTable, heap);
 
         if (!(leftValue instanceof IntValue) || !(rightValue instanceof IntValue)) {
             throw new TypeException("Relational expressions require integer operands");

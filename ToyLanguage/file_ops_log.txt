@@ -1,5 +1,5 @@
 Program Execution Log
-Initialized: 2025-11-09T21:02:52.038993400
+Initialized: 2025-11-23T15:22:00.389681
 
 ================================================================================
 PROGRAM STATE EXECUTION LOG
@@ -209,7 +209,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -242,7 +242,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -275,7 +275,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -309,7 +309,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -342,7 +342,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -376,7 +376,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -409,7 +409,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -443,7 +443,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -476,7 +476,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -510,7 +510,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -544,7 +544,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -579,7 +579,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -613,7 +613,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -648,7 +648,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================
@@ -683,7 +683,7 @@ OUTPUT:
 FILE TABLE:
 --------------------------------------------------------------------------------
 FileTable: {
-  testFileOperations.txt -> java.io.BufferedReader@37a71e93
+  testFileOperations.txt -> java.io.BufferedReader@448139f0
 }
 
 ================================================================================

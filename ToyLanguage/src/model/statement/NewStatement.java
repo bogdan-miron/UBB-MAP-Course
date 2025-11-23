@@ -1,0 +1,54 @@
+package model.statement;
+
+import model.exception.TypeException;
+import model.expression.IExpression;
+import model.state.ProgramState;
+import model.type.RefType;
+import model.value.IValue;
+import model.value.RefValue;
+
+public class NewStatement implements IStatement {
+    private final String variableName;
+    private final IExpression expression;
+
+    public NewStatement(String variableName, IExpression expression) {
+        this.variableName = variableName;
+        this.expression = expression;
+    }
+
+    @Override
+    public ProgramState execute(ProgramState state) throws TypeException {
+        // check if variable is defined and is RefType
+        if (!state.getSymTable().isDefined(variableName)) {
+            throw new TypeException("Heap allocation: Variable " + variableName + " is not defined");
+        }
+
+        IValue varValue = state.getSymTable().lookup(variableName);
+        if (!(varValue.getType() instanceof RefType)) {
+            throw new TypeException("Heap allocation: Variable " + variableName + " must be RefType, got " + varValue.getType());
+        }
+
+        // evaluate expression
+        IValue exprValue = expression.evaluate(state.getSymTable(), state.getHeap());
+
+        // check type compatibility
+        RefType refType = (RefType) varValue.getType();
+        if (!exprValue.getType().equals(refType.getInner())) {
+            throw new TypeException("Heap allocation: Type mismatch. Expected " + refType.getInner() +
+                    " but got " + exprValue.getType());
+        }
+
+        // allocate on heap
+        int newAddress = state.getHeap().allocate(exprValue);
+
+        // update symbol table with new RefValue
+        state.getSymTable().update(variableName, new RefValue(newAddress, refType.getInner()));
+
+        return state;
+    }
+
+    @Override
+    public String toString() {
+        return "new(" + variableName + "," + expression.toString() + ")";
+    }
+}

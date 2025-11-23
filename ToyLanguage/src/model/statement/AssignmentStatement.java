@@ -22,7 +22,7 @@ public class AssignmentStatement implements IStatement {
             throw new TypeException("Variable " + variableName + " is not declared");
         }
 
-        IValue value = expression.evaluate(state.getSymTable());
+        IValue value = expression.evaluate(state.getSymTable(), state.getHeap());
 
         // Type checking
         if (!state.getSymTable().getType(variableName).equals(value.getType())) {

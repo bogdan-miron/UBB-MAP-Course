@@ -3,14 +3,12 @@ package view;
 import controller.Controller;
 import model.exception.ExecutionStackException;
 import model.exception.TypeException;
-import model.expression.ArithmeticExpression;
-import model.expression.RelationalExpression;
-import model.expression.ValueExpression;
-import model.expression.VariableExpression;
+import model.expression.*;
 import model.state.ProgramState;
 import model.statement.*;
 import model.type.IntType;
 import model.type.BoolType;
+import model.type.RefType;
 import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.IntValue;
@@ -104,6 +102,54 @@ public class Main {
 
         System.out.println("\n=== Test 4: Boolean Operations without Logging ===");
         runProgram(prog4, "test4_log.txt", false);
+
+        // Ref int v; new(v,20); Ref Ref int a; new(a,v); print(v); print(a)
+        IStatement prog5 = new CompoundStatement(
+                new DeclarationStatement("v", new RefType(new IntType())),
+                new CompoundStatement(
+                        new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new CompoundStatement(
+                                new DeclarationStatement("a", new RefType(new RefType(new IntType()))),
+                                new CompoundStatement(
+                                        new NewStatement("a", new VariableExpression("v")),
+                                        new CompoundStatement(
+                                                new PrintStatement(new VariableExpression("v")),
+                                                new PrintStatement(new VariableExpression("a"))
+                                        )
+                                )
+                        )
+                )
+        );
+
+        System.out.println("\n=== Test 5: Heap Example - Basic References ===");
+        System.out.println("Program: Ref int v; new(v,20); Ref Ref int a; new(a,v); print(v); print(a)");
+        runProgram(prog5, "test5_heap_log.txt", true);
+
+        // Ref int v; new(v,20); print(rH(v)); wH(v,30); print(rH(v)+5);
+        IStatement prog6 = new CompoundStatement(
+                new DeclarationStatement("v", new RefType(new IntType())),
+                new CompoundStatement(
+                        new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new CompoundStatement(
+                                new PrintStatement(new HeapReadExpression(new VariableExpression("v"))),
+                                new CompoundStatement(
+                                        new HeapWriteStatement("v", new ValueExpression(new IntValue(30))),
+                                        new PrintStatement(
+                                                new ArithmeticExpression(
+                                                        new HeapReadExpression(new VariableExpression("v")),
+                                                        new ValueExpression(new IntValue(5)),
+                                                        "+"
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+
+        System.out.println("\n=== Test 6: Heap Example - Read and Write Operations ===");
+        System.out.println("Program: Ref int v; new(v,20); print(rH(v)); wH(v,30); print(rH(v)+5);");
+        runProgram(prog6, "test6_heap_log.txt", true);
+
     }
 
     private static void runProgram(IStatement program, String logFile, boolean enableLogging) {

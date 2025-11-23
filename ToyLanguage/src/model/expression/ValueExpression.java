@@ -1,5 +1,6 @@
 package model.expression;
 
+import model.state.IHeap;
 import model.state.ISymbolTable;
 import model.value.IValue;
 
@@ -11,7 +12,7 @@ public class ValueExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(ISymbolTable symbolTable) {
+    public IValue evaluate(ISymbolTable symbolTable, IHeap heap) {
         return value;
     }
 

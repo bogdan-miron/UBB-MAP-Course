@@ -33,7 +33,7 @@ public class ReadFileStatement implements IStatement {
             throw new TypeException("ReadFile: variable" + variableName + " is not of type int");
         }
 
-        IValue value = expression.evaluate(programState.getSymTable());
+        IValue value = expression.evaluate(programState.getSymTable(), programState.getHeap());
 
         if (!value.getType().equals(new StringType())) {
             throw new TypeException("ReadFile: variable" + variableName + " is not of type String");

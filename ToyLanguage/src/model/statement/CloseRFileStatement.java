@@ -19,7 +19,7 @@ public class CloseRFileStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState programState) throws TypeException {
-        IValue value = expression.evaluate(programState.getSymTable());
+        IValue value = expression.evaluate(programState.getSymTable(), programState.getHeap());
 
         if (!value.getType().equals(new StringType())) {
             throw new TypeException("CloseRFile: expression must evaluate to a string");
