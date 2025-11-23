@@ -150,6 +150,36 @@ public class Main {
         System.out.println("Program: Ref int v; new(v,20); print(rH(v)); wH(v,30); print(rH(v)+5);");
         runProgram(prog6, "test6_heap_log.txt", true);
 
+        // Program: int v; v=4; (while (v>0) print(v);v=v-1);print(v)
+        IStatement prog7 = new CompoundStatement(
+                new DeclarationStatement("v", new IntType()),
+                new CompoundStatement(
+                        new AssignmentStatement("v", new ValueExpression(new IntValue(4))),
+                        new CompoundStatement(
+                                new WhileStatement(
+                                        new RelationalExpression(
+                                                new VariableExpression("v"),
+                                                new ValueExpression(new IntValue(0)),
+                                                ">"
+                                        ),
+                                        new CompoundStatement(
+                                                new PrintStatement(new VariableExpression("v")),
+                                                new AssignmentStatement("v", new ArithmeticExpression(
+                                                        new VariableExpression("v"),
+                                                        new ValueExpression(new IntValue(1)),
+                                                        "-"
+                                                ))
+                                        )
+                                ),
+                                new PrintStatement(new VariableExpression("v"))
+                        )
+                )
+        );
+
+        System.out.println("\n=== Test 7: While Statement ===");
+        System.out.println("Program: int v; v=4; (while (v>0) print(v);v=v-1);print(v)");
+        runProgram(prog7, "test7_while_log.txt", true);
+
     }
 
     private static void runProgram(IStatement program, String logFile, boolean enableLogging) {
