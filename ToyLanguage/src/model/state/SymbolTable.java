@@ -37,6 +37,11 @@ public class SymbolTable implements ISymbolTable {
     }
 
     @Override
+    public Map<String, IValue> getContent() {
+        return symTable;
+    }
+
+    @Override
     public String toString() {
         if (symTable.isEmpty()) {
             return "SymbolTable: {}";

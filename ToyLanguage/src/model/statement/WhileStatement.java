@@ -6,11 +6,11 @@ import model.state.ProgramState;
 import model.value.BooleanValue;
 import model.value.IValue;
 
-public class WhileStatement implements IStatement{
+public class WhileStatement implements IStatement {
     private final IExpression condition;
     private final IStatement statement;
 
-    public WhileStatement(IExpression condition, IStatement statement){
+    public WhileStatement(IExpression condition, IStatement statement) {
         this.condition = condition;
         this.statement = statement;
     }
@@ -25,7 +25,7 @@ public class WhileStatement implements IStatement{
 
         boolean condBool = ((BooleanValue) condValue).getValue();
 
-        if (condBool){
+        if (condBool) {
             programState.getExeStack().push(this);
             programState.getExeStack().push(statement);
         }

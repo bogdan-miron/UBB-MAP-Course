@@ -3,21 +3,27 @@ package controller;
 import model.exception.ExecutionStackException;
 import model.exception.RepositoryException;
 import model.exception.TypeException;
+import model.gc.GarbageCollector;
 import model.state.ExecutionStack;
 import model.state.IExecutionStack;
 import model.state.ProgramState;
 import model.state.SymbolTable;
 import model.statement.IStatement;
+import model.value.IValue;
 import repository.IRepository;
 import repository.InMemoryRepository;
+
+import java.util.Map;
 
 public class Controller {
     private ProgramState state;
     private final IRepository repo;
     private final boolean logSteps;
+    private final GarbageCollector gc;
 
     public Controller(IStatement program, IRepository repo, boolean logSteps) {
         this.logSteps = logSteps;
+        this.gc = new GarbageCollector();
 
         // the program will be a compound statement
         IExecutionStack exeStack = new ExecutionStack();
@@ -47,9 +53,9 @@ public class Controller {
             throw new RuntimeException("Program has finished execution");
         }
 
-        if (logSteps) {
-            repo.logPrgStateExec();
-        }
+//        if (logSteps) {
+//            repo.logPrgStateExec();
+//        }
 
         IStatement statement = stack.pop();
         state = statement.execute(state);
@@ -59,14 +65,27 @@ public class Controller {
 
     public void allSteps() throws ExecutionStackException, TypeException, RepositoryException {
         IExecutionStack stack = state.getExeStack();
-        while (!stack.isEmpty()) {
-            oneStep();
-        }
 
-        // Log the final state after execution completes
         if (logSteps) {
             repo.logPrgStateExec();
         }
+
+        while (!stack.isEmpty()) {
+            oneStep();
+            performGarbageCollection();
+            if (logSteps) {
+                repo.logPrgStateExec();
+            }
+        }
+    }
+
+    private void performGarbageCollection() {
+        Map<Integer, IValue> cleanedHeap = gc.collect(
+                state.getSymTable(),
+                state.getHeap()
+        );
+
+        state.getHeap().setContent(cleanedHeap);
     }
 
     public ProgramState getProgramState() {
@@ -75,5 +94,9 @@ public class Controller {
 
     public IRepository getRepo() {
         return repo;
+    }
+
+    public GarbageCollector getGarbageCollector() {
+        return gc;
     }
 }
