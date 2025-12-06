@@ -32,7 +32,7 @@ public class AssignmentStatement implements IStatement {
         }
 
         state.getSymTable().update(variableName, value);
-        return state;
+        return null;
     }
 
     @Override

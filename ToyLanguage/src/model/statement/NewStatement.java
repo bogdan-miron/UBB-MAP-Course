@@ -44,7 +44,7 @@ public class NewStatement implements IStatement {
         // update symbol table with new RefValue
         state.getSymTable().update(variableName, new RefValue(newAddress, refType.getInner()));
 
-        return state;
+        return null;
     }
 
     @Override

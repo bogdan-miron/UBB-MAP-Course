@@ -30,7 +30,7 @@ public class WhileStatement implements IStatement {
             programState.getExeStack().push(statement);
         }
 
-        return programState;
+        return null;
     }
 
     @Override

@@ -594,9 +594,14 @@ public class BasicTests {
             controller.allSteps();
 
             System.out.println("Output:");
-            for (IValue value : controller.getProgramState().getOutput().getOutput()) {
-                System.out.println("  " + value);
+            // Get program states from repository (all threads share the same output)
+            if (!repo.getPrgList().isEmpty()) {
+                for (IValue value : repo.getPrgList().get(0).getOutput().getOutput()) {
+                    System.out.println("  " + value);
+                }
             }
+        } catch (InterruptedException e) {
+            System.err.println("  ERROR: Execution interrupted - " + e.getMessage());
         } catch (Exception e) {
             System.err.println("  ERROR: " + e.getMessage());
         }

@@ -1,11 +1,18 @@
 package model.state;
 
+import model.exception.ExecutionStackException;
+import model.exception.TypeException;
+import model.statement.IStatement;
+
 public class ProgramState {
     private final IExecutionStack exeStack;
     private final ISymbolTable symTable;
     private final IOutput output;
     private final IFileTable fileTable;
     private final IHeap heap;
+    private final int id;
+
+    private static int nextId = 1;
 
     public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap, IOutput output) {
         this.exeStack = exeStack;
@@ -13,6 +20,7 @@ public class ProgramState {
         this.fileTable = fileTable;
         this.heap = heap;
         this.output = output;
+        this.id = getNextId();
     }
 
     public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap) {
@@ -21,6 +29,27 @@ public class ProgramState {
 
     public ProgramState(IExecutionStack exeStack, ISymbolTable symTable) {
         this(exeStack, symTable, new FileTable(), new Heap(), new Output());
+    }
+
+    private static synchronized int getNextId() {
+        return nextId++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public boolean isNotCompleted() {
+        return !exeStack.isEmpty();
+    }
+
+    public ProgramState oneStep() throws ExecutionStackException, TypeException {
+        if (exeStack.isEmpty()) {
+            throw new ExecutionStackException("Program state stack is empty");
+        }
+
+        IStatement currentStatement = exeStack.pop();
+        return currentStatement.execute(this);
     }
 
     public ISymbolTable getSymTable() {
@@ -41,5 +70,17 @@ public class ProgramState {
 
     public IHeap getHeap() {
         return heap;
+    }
+
+    @Override
+    public String toString() {
+        return "ProgramState{" +
+                "id=" + id +
+                ", exeStack=" + exeStack +
+                ", symTable=" + symTable +
+                ", output=" + output +
+                ", fileTable=" + fileTable +
+                ", heap=" + heap +
+                '}';
     }
 }

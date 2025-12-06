@@ -25,7 +25,7 @@ public class DeclarationStatement implements IStatement {
         IValue defaultValue = type.defaultValue();
         programState.getSymTable().update(variableName, defaultValue);
 
-        return programState;
+        return null;
     }
 
     @Override

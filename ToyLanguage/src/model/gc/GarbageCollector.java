@@ -19,10 +19,29 @@ public class GarbageCollector {
         return sweep(reachableAddresses, heap);
     }
 
+    public Map<Integer, IValue> collectConcurrent(List<ISymbolTable> symTables, IHeap heap) {
+        // get addresses directly referenced from all symbol tables
+        List<Integer> rootAddresses = getAddressesFromSymbolTables(symTables);
+
+        // find all reachable addresses
+        Set<Integer> reachableAddresses = markReachable(rootAddresses, heap);
+
+        return sweep(reachableAddresses, heap);
+    }
+
     private List<Integer> getAddressesFromSymbolTable(ISymbolTable symTable) {
         Collection<IValue> values = symTable.getContent().values();
 
         return values.stream()
+                .filter(v -> v instanceof RefValue)
+                .map(v -> ((RefValue) v).getAddr())
+                .collect(Collectors.toList());
+    }
+
+    private List<Integer> getAddressesFromSymbolTables(List<ISymbolTable> symTables) {
+        // Collect addresses from all symbol tables
+        return symTables.stream()
+                .flatMap(symTable -> symTable.getContent().values().stream())
                 .filter(v -> v instanceof RefValue)
                 .map(v -> ((RefValue) v).getAddr())
                 .collect(Collectors.toList());

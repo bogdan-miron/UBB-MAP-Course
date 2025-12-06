@@ -16,7 +16,7 @@ public class PrintStatement implements IStatement {
     public ProgramState execute(ProgramState state) throws TypeException {
         IValue result = expression.evaluate(state.getSymTable(), state.getHeap());
         state.getOutput().add(result);
-        return state;
+        return null;
     }
 
     @Override

@@ -1,12 +1,10 @@
 package view;
 
 import controller.Controller;
-import model.expression.ArithmeticExpression;
-import model.expression.RelationalExpression;
-import model.expression.ValueExpression;
-import model.expression.VariableExpression;
+import model.expression.*;
 import model.statement.*;
 import model.type.IntType;
+import model.type.RefType;
 import model.type.StringType;
 import model.value.IntValue;
 import model.value.StringValue;
@@ -87,12 +85,51 @@ public class Interpreter {
         IRepository repo3 = new InMemoryRepository("log3.txt");
         Controller ctr3 = new Controller(ex3, repo3, true);
 
+        // Example 4: Fork statement demonstration
+        // int v; Ref int a; v=10; new(a,22);
+        // fork(wH(a,30); v=32; print(v); print(rH(a)));
+        // print(v); print(rH(a))
+        IStatement ex4 = new CompoundStatement(
+                new DeclarationStatement("v", new IntType()),
+                new CompoundStatement(
+                        new DeclarationStatement("a", new RefType(new IntType())),
+                        new CompoundStatement(
+                                new AssignmentStatement("v", new ValueExpression(new IntValue(10))),
+                                new CompoundStatement(
+                                        new NewStatement("a", new ValueExpression(new IntValue(22))),
+                                        new CompoundStatement(
+                                                new ForkStatement(
+                                                        new CompoundStatement(
+                                                                new HeapWriteStatement("a", new ValueExpression(new IntValue(30))),
+                                                                new CompoundStatement(
+                                                                        new AssignmentStatement("v", new ValueExpression(new IntValue(32))),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new VariableExpression("v")),
+                                                                                new PrintStatement(new HeapReadExpression(new VariableExpression("a")))
+                                                                        )
+                                                                )
+                                                        )
+                                                ),
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VariableExpression("v")),
+                                                        new PrintStatement(new HeapReadExpression(new VariableExpression("a")))
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+
+        IRepository repo4 = new InMemoryRepository("fork_test_log.txt");
+        Controller ctr4 = new Controller(ex4, repo4, true);
+
         // Create text menu and add commands
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         menu.addCommand(new RunExample("1", ex1.toString(), ctr1));
         menu.addCommand(new RunExample("2", ex2.toString(), ctr2));
         menu.addCommand(new RunExample("3", ex3.toString(), ctr3));
+        menu.addCommand(new RunExample("4", "Fork Example: " + ex4.toString(), ctr4));
 
         // Show the menu
         menu.show();

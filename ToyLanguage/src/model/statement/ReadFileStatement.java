@@ -69,7 +69,7 @@ public class ReadFileStatement implements IStatement {
             throw new TypeException("ReadFile: Error reading from file: " + filename);
         }
 
-        return programState;
+        return null;
     }
 
     @Override

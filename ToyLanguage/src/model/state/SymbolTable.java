@@ -42,6 +42,15 @@ public class SymbolTable implements ISymbolTable {
     }
 
     @Override
+    public ISymbolTable clone() {
+        SymbolTable clonedTable = new SymbolTable();
+        for (Map.Entry<String, IValue> entry : this.symTable.entrySet()) {
+            clonedTable.update(entry.getKey(), entry.getValue());
+        }
+        return clonedTable;
+    }
+
+    @Override
     public String toString() {
         if (symTable.isEmpty()) {
             return "SymbolTable: {}";

@@ -40,7 +40,7 @@ public class CloseRFileStatement implements IStatement {
             throw new TypeException("CloseRFile: error closing file " + fileName + " - " + e.getMessage());
         }
 
-        return programState;
+        return null;
     }
 
     @Override

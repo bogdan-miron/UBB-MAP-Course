@@ -3,10 +3,12 @@ package repository;
 import model.exception.RepositoryException;
 import model.state.ProgramState;
 
+import java.util.List;
+
 public interface IRepository {
-    void setProgramState(ProgramState state);
+    List<ProgramState> getPrgList();
 
-    ProgramState getProgramState();
+    void setPrgList(List<ProgramState> prgList);
 
-    void logPrgStateExec() throws RepositoryException;
+    void logPrgStateExec(ProgramState programState) throws RepositoryException;
 }

@@ -40,7 +40,7 @@ public class OpenRFileStatement implements IStatement {
             throw new TypeException("OpenRFile: Could not open filename " + filename);
         }
 
-        return programState;
+        return null;
     }
 
     @Override

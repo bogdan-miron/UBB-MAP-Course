@@ -15,4 +15,6 @@ public interface ISymbolTable {
     IValue lookup(String variableName);
 
     Map<String, IValue> getContent();
+
+    ISymbolTable clone();
 }

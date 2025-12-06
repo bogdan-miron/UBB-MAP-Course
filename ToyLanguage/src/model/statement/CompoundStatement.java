@@ -17,7 +17,7 @@ public class CompoundStatement implements IStatement {
         // push statements in reverse order
         state.getExeStack().push(second);
         state.getExeStack().push(first);
-        return state;
+        return null;
     }
 
     @Override
