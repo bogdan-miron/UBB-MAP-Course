@@ -14,22 +14,22 @@ public class FileTable implements IFileTable {
     }
 
     @Override
-    public boolean isDefined(StringValue path) {
+    public synchronized boolean isDefined(StringValue path) {
         return fileTable.containsKey(path);
     }
 
     @Override
-    public BufferedReader lookup(StringValue path) {
+    public synchronized BufferedReader lookup(StringValue path) {
         return fileTable.get(path);
     }
 
     @Override
-    public void add(StringValue path, BufferedReader fd) {
+    public synchronized void add(StringValue path, BufferedReader fd) {
         fileTable.put(path, fd);
     }
 
     @Override
-    public void remove(StringValue filename) {
+    public synchronized void remove(StringValue filename) {
         fileTable.remove(filename);
     }
 

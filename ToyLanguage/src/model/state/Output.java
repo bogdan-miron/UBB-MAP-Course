@@ -13,12 +13,12 @@ public class Output implements IOutput {
     }
 
     @Override
-    public List<IValue> getOutput() {
+    public synchronized List<IValue> getOutput() {
         return out;
     }
 
     @Override
-    public void add(IValue value) {
+    public synchronized void add(IValue value) {
         this.out.add(value);
     }
 }

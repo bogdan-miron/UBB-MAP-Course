@@ -15,7 +15,7 @@ public class Heap implements IHeap {
     }
 
     @Override
-    public int allocate(IValue value) {
+    public synchronized int allocate(IValue value) {
         heap.put(freeLocation, value);
         int allocatedAddress = freeLocation;
         freeLocation++;
@@ -23,32 +23,32 @@ public class Heap implements IHeap {
     }
 
     @Override
-    public IValue get(int address) {
+    public synchronized IValue get(int address) {
         return heap.get(address);
     }
 
     @Override
-    public void put(int address, IValue value) {
+    public synchronized void put(int address, IValue value) {
         heap.put(address, value);
     }
 
     @Override
-    public boolean isDefined(int address) {
+    public synchronized boolean isDefined(int address) {
         return heap.containsKey(address);
     }
 
     @Override
-    public void remove(int address) {
+    public synchronized void remove(int address) {
         heap.remove(address);
     }
 
     @Override
-    public Map<Integer, IValue> getContent() {
+    public synchronized Map<Integer, IValue> getContent() {
         return heap;
     }
 
     @Override
-    public void setContent(Map<Integer, IValue> content) {
+    public synchronized void setContent(Map<Integer, IValue> content) {
         this.heap = content;
     }
 
