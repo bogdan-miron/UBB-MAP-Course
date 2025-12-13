@@ -3,6 +3,7 @@ package model.statement;
 import model.exception.TypeException;
 import model.expression.IExpression;
 import model.state.ProgramState;
+import model.type.IType;
 import model.type.StringType;
 import model.value.IValue;
 import model.value.StringValue;
@@ -10,6 +11,7 @@ import model.value.StringValue;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 
 public class OpenRFileStatement implements IStatement {
     private final IExpression expression;
@@ -41,6 +43,16 @@ public class OpenRFileStatement implements IStatement {
         }
 
         return null;
+    }
+
+    @Override
+    public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
+        IType typeExp = expression.typecheck(typeEnv);
+        if (typeExp.equals(new StringType())) {
+            return typeEnv;
+        } else {
+            throw new TypeException("OpenRFile: expression must be of type String");
+        }
     }
 
     @Override

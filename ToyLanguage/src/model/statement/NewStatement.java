@@ -3,9 +3,12 @@ package model.statement;
 import model.exception.TypeException;
 import model.expression.IExpression;
 import model.state.ProgramState;
+import model.type.IType;
 import model.type.RefType;
 import model.value.IValue;
 import model.value.RefValue;
+
+import java.util.Map;
 
 public class NewStatement implements IStatement {
     private final String variableName;
@@ -45,6 +48,20 @@ public class NewStatement implements IStatement {
         state.getSymTable().update(variableName, new RefValue(newAddress, refType.getInner()));
 
         return null;
+    }
+
+    @Override
+    public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
+        if (!typeEnv.containsKey(variableName)) {
+            throw new TypeException("Variable " + variableName + " is not declared in type environment");
+        }
+        IType typeVar = typeEnv.get(variableName);
+        IType typeExp = expression.typecheck(typeEnv);
+        if (typeVar.equals(new RefType(typeExp))) {
+            return typeEnv;
+        } else {
+            throw new TypeException("NEW stmt: right hand side and left hand side have different types");
+        }
     }
 
     @Override

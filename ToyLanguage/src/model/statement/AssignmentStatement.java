@@ -3,7 +3,10 @@ package model.statement;
 import model.exception.TypeException;
 import model.expression.IExpression;
 import model.state.ProgramState;
+import model.type.IType;
 import model.value.IValue;
+
+import java.util.Map;
 
 public class AssignmentStatement implements IStatement {
     private final String variableName;
@@ -33,6 +36,20 @@ public class AssignmentStatement implements IStatement {
 
         state.getSymTable().update(variableName, value);
         return null;
+    }
+
+    @Override
+    public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
+        if (!typeEnv.containsKey(variableName)) {
+            throw new TypeException("Variable " + variableName + " is not declared in type environment");
+        }
+        IType typeVar = typeEnv.get(variableName);
+        IType typeExp = expression.typecheck(typeEnv);
+        if (typeVar.equals(typeExp)) {
+            return typeEnv;
+        } else {
+            throw new TypeException("Assignment: right hand side and left hand side have different types");
+        }
     }
 
     @Override

@@ -4,6 +4,10 @@ import model.exception.TypeException;
 import model.state.ExecutionStack;
 import model.state.IExecutionStack;
 import model.state.ProgramState;
+import model.type.IType;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ForkStatement implements IStatement {
     private final IStatement statement;
@@ -32,6 +36,16 @@ public class ForkStatement implements IStatement {
 
         // Return the new thread (child ProgramState), the parent thread continues with the current state (unchanged)
         return newState;
+    }
+
+    @Override
+    public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
+        statement.typecheck(cloneTypeEnv(typeEnv));
+        return typeEnv;
+    }
+
+    private Map<String, IType> cloneTypeEnv(Map<String, IType> typeEnv) {
+        return new HashMap<>(typeEnv);
     }
 
     @Override

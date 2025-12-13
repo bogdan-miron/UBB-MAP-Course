@@ -1,18 +1,20 @@
 package view;
 
 import controller.Controller;
+import model.exception.TypeException;
 import model.expression.*;
 import model.statement.*;
 import model.type.IntType;
 import model.type.RefType;
 import model.type.StringType;
 import model.value.IntValue;
+import model.value.RefValue;
 import model.value.StringValue;
 import repository.IRepository;
 import repository.InMemoryRepository;
 
 public class Interpreter {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TypeException {
         // Example 1: int x; x = 5; int y; y = x + 3; print(y)
         IStatement ex1 = new CompoundStatement(
                 new DeclarationStatement("x", new IntType()),

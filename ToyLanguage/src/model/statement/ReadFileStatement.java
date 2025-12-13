@@ -4,6 +4,7 @@ import model.exception.TypeException;
 import model.expression.IExpression;
 import model.state.ProgramState;
 import model.type.IntType;
+import model.type.IType;
 import model.type.StringType;
 import model.value.IValue;
 import model.value.IntValue;
@@ -11,6 +12,7 @@ import model.value.StringValue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Map;
 
 public class ReadFileStatement implements IStatement {
 
@@ -70,6 +72,25 @@ public class ReadFileStatement implements IStatement {
         }
 
         return null;
+    }
+
+    @Override
+    public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
+        IType typeExp = expression.typecheck(typeEnv);
+        if (!typeExp.equals(new StringType())) {
+            throw new TypeException("ReadFile: expression must be of type String");
+        }
+
+        if (!typeEnv.containsKey(variableName)) {
+            throw new TypeException("ReadFile: variable " + variableName + " is not declared");
+        }
+
+        IType typeVar = typeEnv.get(variableName);
+        if (!typeVar.equals(new IntType())) {
+            throw new TypeException("ReadFile: variable must be of type Int");
+        }
+
+        return typeEnv;
     }
 
     @Override

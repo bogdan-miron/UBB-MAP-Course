@@ -1,7 +1,11 @@
 package model.statement;
 
+import model.exception.TypeException;
 import model.state.ISymbolTable;
 import model.state.ProgramState;
+import model.type.IType;
+
+import java.util.Map;
 
 public class CompoundStatement implements IStatement {
     private final IStatement first;
@@ -18,6 +22,11 @@ public class CompoundStatement implements IStatement {
         state.getExeStack().push(second);
         state.getExeStack().push(first);
         return null;
+    }
+
+    @Override
+    public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
+        return second.typecheck(first.typecheck(typeEnv));
     }
 
     @Override

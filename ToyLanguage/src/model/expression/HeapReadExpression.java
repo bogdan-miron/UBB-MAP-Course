@@ -3,8 +3,12 @@ package model.expression;
 import model.exception.TypeException;
 import model.state.ISymbolTable;
 import model.state.IHeap;
+import model.type.IType;
+import model.type.RefType;
 import model.value.IValue;
 import model.value.RefValue;
+
+import java.util.Map;
 
 public class HeapReadExpression implements IExpression {
     private final IExpression expression;
@@ -29,6 +33,17 @@ public class HeapReadExpression implements IExpression {
         }
 
         return heap.get(address);
+    }
+
+    @Override
+    public IType typecheck(Map<String, IType> typeEnv) throws TypeException {
+        IType type = expression.typecheck(typeEnv);
+        if (type instanceof RefType) {
+            RefType refType = (RefType) type;
+            return refType.getInner();
+        } else {
+            throw new TypeException("Heap read expression: the argument is not a Ref Type");
+        }
     }
 
     @Override

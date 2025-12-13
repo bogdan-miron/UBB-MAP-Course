@@ -10,11 +10,13 @@ import model.state.ISymbolTable;
 import model.state.ProgramState;
 import model.state.SymbolTable;
 import model.statement.IStatement;
+import model.type.IType;
 import model.value.IValue;
 import repository.IRepository;
 import repository.InMemoryRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -28,10 +30,14 @@ public class Controller {
     private final GarbageCollector gc;
     private ExecutorService executor;
 
-    public Controller(IStatement program, IRepository repo, boolean logSteps) {
+    public Controller(IStatement program, IRepository repo, boolean logSteps) throws TypeException {
         this.logSteps = logSteps;
         this.gc = new GarbageCollector();
         this.repo = repo;
+
+        // Type check the program before creating ProgramState
+        Map<String, IType> typeEnv = new HashMap<>();
+        program.typecheck(typeEnv);
 
         // Create the initial program state
         IExecutionStack exeStack = new ExecutionStack();
@@ -53,7 +59,7 @@ public class Controller {
         }
     }
 
-    public Controller(IStatement program, IRepository repo) {
+    public Controller(IStatement program, IRepository repo) throws TypeException {
         this(program, repo, false);
     }
 

@@ -1,8 +1,12 @@
 package model.expression;
 
+import model.exception.TypeException;
 import model.state.IHeap;
 import model.state.ISymbolTable;
+import model.type.IType;
 import model.value.IValue;
+
+import java.util.Map;
 
 public class VariableExpression implements IExpression {
     private final String variableName;
@@ -18,6 +22,14 @@ public class VariableExpression implements IExpression {
         }
 
         return ((ISymbolTable) symbolTable).lookup(variableName);
+    }
+
+    @Override
+    public IType typecheck(Map<String, IType> typeEnv) throws TypeException {
+        if (!typeEnv.containsKey(variableName)) {
+            throw new TypeException("Variable " + variableName + " is not defined in type environment");
+        }
+        return typeEnv.get(variableName);
     }
 
     @Override

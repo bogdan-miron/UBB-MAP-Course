@@ -7,6 +7,9 @@ import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.IntValue;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DeclarationStatement implements IStatement {
     private final String variableName;
     private final IType type;
@@ -26,6 +29,12 @@ public class DeclarationStatement implements IStatement {
         programState.getSymTable().update(variableName, defaultValue);
 
         return null;
+    }
+
+    @Override
+    public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
+        typeEnv.put(variableName, type);
+        return typeEnv;
     }
 
     @Override

@@ -3,9 +3,12 @@ package model.statement;
 import model.exception.TypeException;
 import model.expression.IExpression;
 import model.state.ProgramState;
+import model.type.IType;
 import model.type.RefType;
 import model.value.IValue;
 import model.value.RefValue;
+
+import java.util.Map;
 
 public class HeapWriteStatement implements IStatement {
     private final String variableName;
@@ -49,6 +52,26 @@ public class HeapWriteStatement implements IStatement {
         state.getHeap().put(address, exprValue);
 
         return null;
+    }
+
+    @Override
+    public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
+        if (!typeEnv.containsKey(variableName)) {
+            throw new TypeException("Variable " + variableName + " is not declared in type environment");
+        }
+        IType typeVar = typeEnv.get(variableName);
+        IType typeExp = expression.typecheck(typeEnv);
+
+        if (typeVar instanceof RefType) {
+            RefType refType = (RefType) typeVar;
+            if (refType.getInner().equals(typeExp)) {
+                return typeEnv;
+            } else {
+                throw new TypeException("Heap write: right hand side and left hand side have different types");
+            }
+        } else {
+            throw new TypeException("Heap write: variable must be RefType");
+        }
     }
 
     @Override

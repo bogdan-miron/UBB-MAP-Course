@@ -1,8 +1,12 @@
 package model.expression;
 
+import model.exception.TypeException;
 import model.state.IHeap;
 import model.state.ISymbolTable;
+import model.type.IType;
 import model.value.IValue;
+
+import java.util.Map;
 
 public class ValueExpression implements IExpression {
     private final IValue value;
@@ -14,6 +18,11 @@ public class ValueExpression implements IExpression {
     @Override
     public IValue evaluate(ISymbolTable symbolTable, IHeap heap) {
         return value;
+    }
+
+    @Override
+    public IType typecheck(Map<String, IType> typeEnv) throws TypeException {
+        return value.getType();
     }
 
     @Override
