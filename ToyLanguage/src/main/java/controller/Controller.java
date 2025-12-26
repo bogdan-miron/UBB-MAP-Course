@@ -70,6 +70,14 @@ public class Controller {
     }
 
     public void oneStepForAllPrg(List<ProgramState> prgList) throws InterruptedException, RepositoryException {
+        // Initialize executor if null (for GUI single-step execution)
+        if (executor == null) {
+            executor = Executors.newFixedThreadPool(2);
+        }
+
+        // Perform garbage collection before executing the step
+        performGarbageCollection(prgList);
+
         // before the execution, print the PrgState List into the log file
         if (logSteps) {
             for (ProgramState prg : prgList) {
@@ -123,10 +131,8 @@ public class Controller {
         List<ProgramState> prgList = removeCompletedPrg(repo.getPrgList());
 
         while (prgList.size() > 0) {
-            // perform garbage collection before executing the next step
-            performGarbageCollection(prgList);
-
             // execute one step for all programs
+            // (garbage collection is now performed inside oneStepForAllPrg)
             oneStepForAllPrg(prgList);
 
             // remove the completed programs
@@ -139,7 +145,7 @@ public class Controller {
         // (from the last oneStepForAllPrg call), so we can access the shared output/heap
     }
 
-    private void performGarbageCollection(List<ProgramState> prgList) {
+    public void performGarbageCollection(List<ProgramState> prgList) {
         // collect all symbol tables from all program states
         List<ISymbolTable> symTables = prgList.stream()
                 .map(ProgramState::getSymTable)
