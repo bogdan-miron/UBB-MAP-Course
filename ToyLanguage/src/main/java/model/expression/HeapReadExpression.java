@@ -47,6 +47,11 @@ public class HeapReadExpression implements IExpression {
     }
 
     @Override
+    public IExpression deepCopy() {
+        return new HeapReadExpression(expression.deepCopy());
+    }
+
+    @Override
     public String toString() {
         return "rH(" + expression.toString() + ")";
     }

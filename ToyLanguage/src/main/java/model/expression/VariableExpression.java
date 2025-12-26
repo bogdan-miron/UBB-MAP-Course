@@ -33,6 +33,11 @@ public class VariableExpression implements IExpression {
     }
 
     @Override
+    public IExpression deepCopy() {
+        return new VariableExpression(variableName);
+    }
+
+    @Override
     public String toString() {
         return variableName;
     }

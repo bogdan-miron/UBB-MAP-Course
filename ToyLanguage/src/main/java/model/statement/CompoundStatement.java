@@ -25,6 +25,11 @@ public class CompoundStatement implements IStatement {
     }
 
     @Override
+    public IStatement deepCopy() {
+        return new CompoundStatement(first.deepCopy(), second.deepCopy());
+    }
+
+    @Override
     public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
         return second.typecheck(first.typecheck(typeEnv));
     }

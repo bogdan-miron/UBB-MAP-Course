@@ -55,6 +55,11 @@ public class HeapWriteStatement implements IStatement {
     }
 
     @Override
+    public IStatement deepCopy() {
+        return new HeapWriteStatement(variableName, expression.deepCopy());
+    }
+
+    @Override
     public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
         if (!typeEnv.containsKey(variableName)) {
             throw new TypeException("Variable " + variableName + " is not declared in type environment");

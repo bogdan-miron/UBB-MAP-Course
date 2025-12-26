@@ -10,4 +10,6 @@ public interface IStatement {
     ProgramState execute(ProgramState programState) throws TypeException;
 
     Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException;
+
+    IStatement deepCopy();
 }

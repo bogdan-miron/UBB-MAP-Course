@@ -14,6 +14,11 @@ public class NopStatement implements IStatement {
     }
 
     @Override
+    public IStatement deepCopy() {
+        return new NopStatement();
+    }
+
+    @Override
     public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
         return typeEnv;
     }

@@ -32,6 +32,11 @@ public class DeclarationStatement implements IStatement {
     }
 
     @Override
+    public IStatement deepCopy() {
+        return new DeclarationStatement(variableName, type);
+    }
+
+    @Override
     public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
         typeEnv.put(variableName, type);
         return typeEnv;

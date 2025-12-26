@@ -78,6 +78,11 @@ public class ArithmeticExpression implements IExpression {
     }
 
     @Override
+    public IExpression deepCopy() {
+        return new ArithmeticExpression(left.deepCopy(), right.deepCopy(), operator);
+    }
+
+    @Override
     public String toString() {
         return "(" + left.toString() + " " + operator + " " + right.toString() + ")";
     }

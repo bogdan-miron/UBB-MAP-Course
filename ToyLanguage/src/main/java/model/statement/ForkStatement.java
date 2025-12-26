@@ -49,6 +49,11 @@ public class ForkStatement implements IStatement {
     }
 
     @Override
+    public IStatement deepCopy() {
+        return new ForkStatement(statement.deepCopy());
+    }
+
+    @Override
     public String toString() {
         return "fork(" + statement + ")";
     }

@@ -350,6 +350,73 @@ public class ProgramSelectionWindow {
                 "gui_multiple_forks_log.txt"
         ));
 
+        // Example 10: Repeat...Until Statement
+        // int v; int x; int y; v=0;
+        // repeat (fork(print(v);v=v-1);v=v+1) until v==3;
+        // x=1;nop;y=3;nop;
+        // print(v*10)
+        IStatement ex10 = new CompoundStatement(
+                new DeclarationStatement("v", new IntType()),
+                new CompoundStatement(
+                        new DeclarationStatement("x", new IntType()),
+                        new CompoundStatement(
+                                new DeclarationStatement("y", new IntType()),
+                                new CompoundStatement(
+                                        new AssignmentStatement("v", new ValueExpression(new IntValue(0))),
+                                        new CompoundStatement(
+                                                new RepeatStatement(
+                                                        new CompoundStatement(
+                                                                new ForkStatement(
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new VariableExpression("v")),
+                                                                                new AssignmentStatement("v", new ArithmeticExpression(
+                                                                                        new VariableExpression("v"),
+                                                                                        new ValueExpression(new IntValue(1)),
+                                                                                        "-"
+                                                                                ))
+                                                                        )
+                                                                ),
+                                                                new AssignmentStatement("v", new ArithmeticExpression(
+                                                                        new VariableExpression("v"),
+                                                                        new ValueExpression(new IntValue(1)),
+                                                                        "+"
+                                                                ))
+                                                        ),
+                                                        new RelationalExpression(
+                                                                new VariableExpression("v"),
+                                                                new ValueExpression(new IntValue(3)),
+                                                                "=="
+                                                        )
+                                                ),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement("x", new ValueExpression(new IntValue(1))),
+                                                        new CompoundStatement(
+                                                                new NopStatement(),
+                                                                new CompoundStatement(
+                                                                        new AssignmentStatement("y", new ValueExpression(new IntValue(3))),
+                                                                        new CompoundStatement(
+                                                                                new NopStatement(),
+                                                                                new PrintStatement(new ArithmeticExpression(
+                                                                                        new VariableExpression("v"),
+                                                                                        new ValueExpression(new IntValue(10)),
+                                                                                        "*"
+                                                                                ))
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        programList.add(new ProgramDefinition(
+                "Example 10: Repeat...Until",
+                ex10.toString(),
+                ex10,
+                "gui_repeat_until_log.txt"
+        ));
+
         return programList;
     }
 

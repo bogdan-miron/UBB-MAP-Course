@@ -78,6 +78,11 @@ public class RelationalExpression implements IExpression {
     }
 
     @Override
+    public IExpression deepCopy() {
+        return new RelationalExpression(left.deepCopy(), right.deepCopy(), operator);
+    }
+
+    @Override
     public String toString() {
         return "(" + left.toString() + " " + operator + " " + right.toString() + ")";
     }

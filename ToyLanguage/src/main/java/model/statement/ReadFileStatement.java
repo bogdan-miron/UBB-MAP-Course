@@ -75,6 +75,11 @@ public class ReadFileStatement implements IStatement {
     }
 
     @Override
+    public IStatement deepCopy() {
+        return new ReadFileStatement(expression.deepCopy(), variableName);
+    }
+
+    @Override
     public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
         IType typeExp = expression.typecheck(typeEnv);
         if (!typeExp.equals(new StringType())) {

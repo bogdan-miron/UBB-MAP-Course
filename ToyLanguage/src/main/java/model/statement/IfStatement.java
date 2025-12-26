@@ -57,6 +57,11 @@ public class IfStatement implements IStatement {
     }
 
     @Override
+    public IStatement deepCopy() {
+        return new IfStatement(condition.deepCopy(), thenStatement.deepCopy(), elseStatement.deepCopy());
+    }
+
+    @Override
     public String toString() {
         return "if (" + condition.toString() + " then " + thenStatement.toString() + " else " + elseStatement.toString() + ")";
     }

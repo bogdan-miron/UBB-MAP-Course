@@ -23,6 +23,11 @@ public class PrintStatement implements IStatement {
     }
 
     @Override
+    public IStatement deepCopy() {
+        return new PrintStatement(expression.deepCopy());
+    }
+
+    @Override
     public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
         expression.typecheck(typeEnv);
         return typeEnv;

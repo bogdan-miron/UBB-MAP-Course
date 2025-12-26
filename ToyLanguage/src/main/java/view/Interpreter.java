@@ -125,6 +125,71 @@ public class Interpreter {
         IRepository repo4 = new InMemoryRepository("fork_test_log.txt");
         Controller ctr4 = new Controller(ex4, repo4, true);
 
+        // Example 5: Repeat...Until
+        // int v; int x; int y; v=0;
+        // repeat (fork(print(v);v=v-1);v=v+1) until v==3;
+        // x=1;nop;y=3;nop;
+        // print(v*10)
+        // Expected output: {0,1,2,30}
+        IStatement ex5 = new CompoundStatement(
+                new DeclarationStatement("v", new IntType()),
+                new CompoundStatement(
+                        new DeclarationStatement("x", new IntType()),
+                        new CompoundStatement(
+                                new DeclarationStatement("y", new IntType()),
+                                new CompoundStatement(
+                                        new AssignmentStatement("v", new ValueExpression(new IntValue(0))),
+                                        new CompoundStatement(
+                                                new RepeatStatement(
+                                                        new CompoundStatement(
+                                                                new ForkStatement(
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new VariableExpression("v")),
+                                                                                new AssignmentStatement("v", new ArithmeticExpression(
+                                                                                        new VariableExpression("v"),
+                                                                                        new ValueExpression(new IntValue(1)),
+                                                                                        "-"
+                                                                                ))
+                                                                        )
+                                                                ),
+                                                                new AssignmentStatement("v", new ArithmeticExpression(
+                                                                        new VariableExpression("v"),
+                                                                        new ValueExpression(new IntValue(1)),
+                                                                        "+"
+                                                                ))
+                                                        ),
+                                                        new RelationalExpression(
+                                                                new VariableExpression("v"),
+                                                                new ValueExpression(new IntValue(3)),
+                                                                "=="
+                                                        )
+                                                ),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement("x", new ValueExpression(new IntValue(1))),
+                                                        new CompoundStatement(
+                                                                new NopStatement(),
+                                                                new CompoundStatement(
+                                                                        new AssignmentStatement("y", new ValueExpression(new IntValue(3))),
+                                                                        new CompoundStatement(
+                                                                                new NopStatement(),
+                                                                                new PrintStatement(new ArithmeticExpression(
+                                                                                        new VariableExpression("v"),
+                                                                                        new ValueExpression(new IntValue(10)),
+                                                                                        "*"
+                                                                                ))
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+
+        IRepository repo5 = new InMemoryRepository("repeat_until_log.txt");
+        Controller ctr5 = new Controller(ex5, repo5, true);
+
         // Create text menu and add commands
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
@@ -132,6 +197,7 @@ public class Interpreter {
         menu.addCommand(new RunExample("2", ex2.toString(), ctr2));
         menu.addCommand(new RunExample("3", ex3.toString(), ctr3));
         menu.addCommand(new RunExample("4", "Fork Example: " + ex4.toString(), ctr4));
+        menu.addCommand(new RunExample("5", "Repeat...Until: " + ex5.toString(), ctr5));
 
         // Show the menu
         menu.show();

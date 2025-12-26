@@ -46,6 +46,11 @@ public class OpenRFileStatement implements IStatement {
     }
 
     @Override
+    public IStatement deepCopy() {
+        return new OpenRFileStatement(expression.deepCopy());
+    }
+
+    @Override
     public Map<String, IType> typecheck(Map<String, IType> typeEnv) throws TypeException {
         IType typeExp = expression.typecheck(typeEnv);
         if (typeExp.equals(new StringType())) {

@@ -13,5 +13,7 @@ public interface IExpression {
 
     IType typecheck(Map<String, IType> typeEnv) throws TypeException;
 
+    IExpression deepCopy();
+
     String toString();
 }
