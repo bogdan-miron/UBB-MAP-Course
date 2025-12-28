@@ -417,6 +417,76 @@ public class ProgramSelectionWindow {
                 "gui_repeat_until_log.txt"
         ));
 
+        // Example 11: Conditional Assignment
+        // Ref int a; Ref int b; int v;
+        // new(a,0); new(b,0);
+        // wh(a,1); wh(b,2);
+        // v=(rh(a)<rh(b))?100:200;
+        // print(v);
+        // v=((rh(b)-2)>rh(a))?100:200;
+        // print(v);
+        IStatement ex11 = new CompoundStatement(
+                new DeclarationStatement("a", new RefType(new IntType())),
+                new CompoundStatement(
+                        new DeclarationStatement("b", new RefType(new IntType())),
+                        new CompoundStatement(
+                                new DeclarationStatement("v", new IntType()),
+                                new CompoundStatement(
+                                        new NewStatement("a", new ValueExpression(new IntValue(0))),
+                                        new CompoundStatement(
+                                                new NewStatement("b", new ValueExpression(new IntValue(0))),
+                                                new CompoundStatement(
+                                                        new HeapWriteStatement("a", new ValueExpression(new IntValue(1))),
+                                                        new CompoundStatement(
+                                                                new HeapWriteStatement("b", new ValueExpression(new IntValue(2))),
+                                                                new CompoundStatement(
+                                                                        // v=(rh(a)<rh(b))?100:200
+                                                                        new ConditionalAssignmentStatement(
+                                                                                "v",
+                                                                                new RelationalExpression(
+                                                                                        new HeapReadExpression(new VariableExpression("a")),
+                                                                                        new HeapReadExpression(new VariableExpression("b")),
+                                                                                        "<"
+                                                                                ),
+                                                                                new ValueExpression(new IntValue(100)),
+                                                                                new ValueExpression(new IntValue(200))
+                                                                        ),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new VariableExpression("v")),
+                                                                                new CompoundStatement(
+                                                                                        // v=((rh(b)-2)>rh(a))?100:200
+                                                                                        new ConditionalAssignmentStatement(
+                                                                                                "v",
+                                                                                                new RelationalExpression(
+                                                                                                        new ArithmeticExpression(
+                                                                                                                new HeapReadExpression(new VariableExpression("b")),
+                                                                                                                new ValueExpression(new IntValue(2)),
+                                                                                                                "-"
+                                                                                                        ),
+                                                                                                        new HeapReadExpression(new VariableExpression("a")),
+                                                                                                        ">"
+                                                                                                ),
+                                                                                                new ValueExpression(new IntValue(100)),
+                                                                                                new ValueExpression(new IntValue(200))
+                                                                                        ),
+                                                                                        new PrintStatement(new VariableExpression("v"))
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        programList.add(new ProgramDefinition(
+                "Example 11: Conditional Assignment",
+                ex11.toString(),
+                ex11,
+                "gui_conditional_assignment_log.txt"
+        ));
+
         return programList;
     }
 
