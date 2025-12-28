@@ -12,27 +12,29 @@ public class ProgramState {
     private final IHeap heap;
     private final ILatchTable latchTable;
     private final IBarrierTable barrierTable;
+    private final ILockTable lockTable;
     private final int id;
 
     private static int nextId = 1;
 
-    public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap, ILatchTable latchTable, IBarrierTable barrierTable, IOutput output) {
+    public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap, ILatchTable latchTable, IBarrierTable barrierTable, ILockTable lockTable, IOutput output) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.fileTable = fileTable;
         this.heap = heap;
         this.latchTable = latchTable;
         this.barrierTable = barrierTable;
+        this.lockTable = lockTable;
         this.output = output;
         this.id = getNextId();
     }
 
     public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap) {
-        this(exeStack, symTable, fileTable, heap, new LatchTable(), new BarrierTable(), new Output());
+        this(exeStack, symTable, fileTable, heap, new LatchTable(), new BarrierTable(), new LockTable(), new Output());
     }
 
     public ProgramState(IExecutionStack exeStack, ISymbolTable symTable) {
-        this(exeStack, symTable, new FileTable(), new Heap(), new LatchTable(), new BarrierTable(), new Output());
+        this(exeStack, symTable, new FileTable(), new Heap(), new LatchTable(), new BarrierTable(), new LockTable(), new Output());
     }
 
     private static synchronized int getNextId() {
@@ -84,6 +86,10 @@ public class ProgramState {
         return barrierTable;
     }
 
+    public ILockTable getLockTable() {
+        return lockTable;
+    }
+
     @Override
     public String toString() {
         return "ProgramState{" +
@@ -95,6 +101,7 @@ public class ProgramState {
                 ", heap=" + heap +
                 ", latchTable=" + latchTable +
                 ", barrierTable=" + barrierTable +
+                ", lockTable=" + lockTable +
                 '}';
     }
 }

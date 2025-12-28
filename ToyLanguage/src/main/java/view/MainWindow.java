@@ -33,6 +33,7 @@ public class MainWindow {
     private TableView<HeapEntry> heapTableView;     // (b) Heap table
     private TableView<LatchEntry> latchTableView;   // (b2) Latch table
     private TableView<BarrierEntry> barrierTableView; // (b3) Barrier table
+    private TableView<LockEntry> lockTableView;     // (b4) Lock table
     private ListView<String> outputListView;         // (c) Output
     private ListView<String> fileTableListView;      // (d) File table
     private ListView<Integer> prgStateIdListView;    // (e) PrgState IDs
@@ -156,6 +157,32 @@ public class MainWindow {
         }
     }
 
+    public static class LockEntry {
+        private final SimpleIntegerProperty location;
+        private final SimpleStringProperty value;
+
+        public LockEntry(Integer location, String value) {
+            this.location = new SimpleIntegerProperty(location);
+            this.value = new SimpleStringProperty(value);
+        }
+
+        public int getLocation() {
+            return location.get();
+        }
+
+        public String getValue() {
+            return value.get();
+        }
+
+        public SimpleIntegerProperty locationProperty() {
+            return location;
+        }
+
+        public SimpleStringProperty valueProperty() {
+            return value;
+        }
+    }
+
     public MainWindow(Controller controller, String programName) {
         this.controller = controller;
         this.programName = programName;
@@ -218,10 +245,11 @@ public class MainWindow {
         VBox heapSection = createHeapSection();
         VBox latchSection = createLatchSection();
         VBox barrierSection = createBarrierSection();
+        VBox lockSection = createLockSection();
         VBox outputSection = createOutputSection();
 
-        topSplit.getItems().addAll(heapSection, latchSection, barrierSection, outputSection);
-        topSplit.setDividerPositions(0.25, 0.5, 0.75);
+        topSplit.getItems().addAll(heapSection, latchSection, barrierSection, lockSection, outputSection);
+        topSplit.setDividerPositions(0.20, 0.40, 0.60, 0.80);
 
         // middle section: FileTable and PrgState IDs side by side
         SplitPane middleSplit = new SplitPane();
@@ -326,6 +354,31 @@ public class MainWindow {
 
         VBox.setVgrow(barrierTableView, Priority.ALWAYS);
         section.getChildren().addAll(label, barrierTableView);
+        return section;
+    }
+
+    private VBox createLockSection() {
+        VBox section = new VBox(5);
+
+        Label label = new Label("Lock Table");
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+
+        lockTableView = new TableView<>();
+        lockTableView.setPlaceholder(new Label("No locks allocated"));
+
+        TableColumn<LockEntry, Integer> locationCol = new TableColumn<>("Location");
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        locationCol.setPrefWidth(100);
+
+        TableColumn<LockEntry, String> valueCol = new TableColumn<>("Value");
+        valueCol.setCellValueFactory(new PropertyValueFactory<>("value"));
+        valueCol.setPrefWidth(100);
+
+        lockTableView.getColumns().addAll(locationCol, valueCol);
+        lockTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        VBox.setVgrow(lockTableView, Priority.ALWAYS);
+        section.getChildren().addAll(label, lockTableView);
         return section;
     }
 
@@ -515,6 +568,7 @@ public class MainWindow {
             heapTableView.setItems(FXCollections.observableArrayList());
             latchTableView.setItems(FXCollections.observableArrayList());
             barrierTableView.setItems(FXCollections.observableArrayList());
+            lockTableView.setItems(FXCollections.observableArrayList());
             outputListView.setItems(FXCollections.observableArrayList());
             fileTableListView.setItems(FXCollections.observableArrayList());
             prgStateIdListView.setItems(FXCollections.observableArrayList());
@@ -551,6 +605,17 @@ public class MainWindow {
             barrierEntries.add(new BarrierEntry(index, capacity, listStr));
         }
         barrierTableView.setItems(barrierEntries);
+
+        // (b4) update Lock Table (shared across all states)
+        Map<Integer, Integer> lockTable = firstState.getLockTable().getContent();
+        ObservableList<LockEntry> lockEntries = FXCollections.observableArrayList();
+        for (Map.Entry<Integer, Integer> entry : lockTable.entrySet()) {
+            int location = entry.getKey();
+            int value = entry.getValue();
+            String displayValue = (value == -1) ? "FREE" : String.valueOf(value);
+            lockEntries.add(new LockEntry(location, displayValue));
+        }
+        lockTableView.setItems(lockEntries);
 
         // (c) update Output (shared across all states)
         List<IValue> output = firstState.getOutput().getOutput();
