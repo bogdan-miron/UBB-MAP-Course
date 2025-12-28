@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.exception.RepositoryException;
 import model.state.*;
+import model.util.Pair;
 import model.value.IValue;
 
 import java.util.*;
@@ -31,6 +32,7 @@ public class MainWindow {
     private TextField prgStateCountField;           // (a) number of PrgStates
     private TableView<HeapEntry> heapTableView;     // (b) Heap table
     private TableView<LatchEntry> latchTableView;   // (b2) Latch table
+    private TableView<BarrierEntry> barrierTableView; // (b3) Barrier table
     private ListView<String> outputListView;         // (c) Output
     private ListView<String> fileTableListView;      // (d) File table
     private ListView<Integer> prgStateIdListView;    // (e) PrgState IDs
@@ -118,6 +120,42 @@ public class MainWindow {
         }
     }
 
+    public static class BarrierEntry {
+        private final SimpleIntegerProperty index;
+        private final SimpleIntegerProperty capacity;
+        private final SimpleStringProperty waitingList;
+
+        public BarrierEntry(Integer index, Integer capacity, String waitingList) {
+            this.index = new SimpleIntegerProperty(index);
+            this.capacity = new SimpleIntegerProperty(capacity);
+            this.waitingList = new SimpleStringProperty(waitingList);
+        }
+
+        public int getIndex() {
+            return index.get();
+        }
+
+        public int getCapacity() {
+            return capacity.get();
+        }
+
+        public String getWaitingList() {
+            return waitingList.get();
+        }
+
+        public SimpleIntegerProperty indexProperty() {
+            return index;
+        }
+
+        public SimpleIntegerProperty capacityProperty() {
+            return capacity;
+        }
+
+        public SimpleStringProperty waitingListProperty() {
+            return waitingList;
+        }
+    }
+
     public MainWindow(Controller controller, String programName) {
         this.controller = controller;
         this.programName = programName;
@@ -172,17 +210,18 @@ public class MainWindow {
         VBox centerPanel = new VBox(10);
         centerPanel.setPadding(new Insets(10, 0, 10, 0));
 
-        // top section: Heap, Latch Table, and Output side by side
+        // top section: Heap, Latch Table, Barrier Table, and Output side by side
         SplitPane topSplit = new SplitPane();
         topSplit.setOrientation(Orientation.HORIZONTAL);
         topSplit.setPrefHeight(250);
 
         VBox heapSection = createHeapSection();
         VBox latchSection = createLatchSection();
+        VBox barrierSection = createBarrierSection();
         VBox outputSection = createOutputSection();
 
-        topSplit.getItems().addAll(heapSection, latchSection, outputSection);
-        topSplit.setDividerPositions(0.33, 0.66);
+        topSplit.getItems().addAll(heapSection, latchSection, barrierSection, outputSection);
+        topSplit.setDividerPositions(0.25, 0.5, 0.75);
 
         // middle section: FileTable and PrgState IDs side by side
         SplitPane middleSplit = new SplitPane();
@@ -258,6 +297,35 @@ public class MainWindow {
 
         VBox.setVgrow(latchTableView, Priority.ALWAYS);
         section.getChildren().addAll(label, latchTableView);
+        return section;
+    }
+
+    private VBox createBarrierSection() {
+        VBox section = new VBox(5);
+
+        Label label = new Label("Barrier Table");
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+
+        barrierTableView = new TableView<>();
+        barrierTableView.setPlaceholder(new Label("No barriers allocated"));
+
+        TableColumn<BarrierEntry, Integer> indexCol = new TableColumn<>("Index");
+        indexCol.setCellValueFactory(new PropertyValueFactory<>("index"));
+        indexCol.setPrefWidth(80);
+
+        TableColumn<BarrierEntry, Integer> capacityCol = new TableColumn<>("Capacity");
+        capacityCol.setCellValueFactory(new PropertyValueFactory<>("capacity"));
+        capacityCol.setPrefWidth(100);
+
+        TableColumn<BarrierEntry, String> listCol = new TableColumn<>("Waiting List");
+        listCol.setCellValueFactory(new PropertyValueFactory<>("waitingList"));
+        listCol.setPrefWidth(150);
+
+        barrierTableView.getColumns().addAll(indexCol, capacityCol, listCol);
+        barrierTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        VBox.setVgrow(barrierTableView, Priority.ALWAYS);
+        section.getChildren().addAll(label, barrierTableView);
         return section;
     }
 
@@ -446,6 +514,7 @@ public class MainWindow {
             // clear all displays if no programs (shouldn't happen normally)
             heapTableView.setItems(FXCollections.observableArrayList());
             latchTableView.setItems(FXCollections.observableArrayList());
+            barrierTableView.setItems(FXCollections.observableArrayList());
             outputListView.setItems(FXCollections.observableArrayList());
             fileTableListView.setItems(FXCollections.observableArrayList());
             prgStateIdListView.setItems(FXCollections.observableArrayList());
@@ -470,6 +539,18 @@ public class MainWindow {
             latchEntries.add(new LatchEntry(entry.getKey(), entry.getValue()));
         }
         latchTableView.setItems(latchEntries);
+
+        // (b3) update Barrier Table (shared across all states)
+        Map<Integer, Pair<Integer, List<Integer>>> barrierTable = firstState.getBarrierTable().getContent();
+        ObservableList<BarrierEntry> barrierEntries = FXCollections.observableArrayList();
+        for (Map.Entry<Integer, Pair<Integer, List<Integer>>> entry : barrierTable.entrySet()) {
+            int index = entry.getKey();
+            int capacity = entry.getValue().getFirst();
+            List<Integer> waitingList = entry.getValue().getSecond();
+            String listStr = waitingList.toString();
+            barrierEntries.add(new BarrierEntry(index, capacity, listStr));
+        }
+        barrierTableView.setItems(barrierEntries);
 
         // (c) update Output (shared across all states)
         List<IValue> output = firstState.getOutput().getOutput();

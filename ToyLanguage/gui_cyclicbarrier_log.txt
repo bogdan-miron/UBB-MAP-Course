@@ -1,5 +1,5 @@
 Program Execution Log
-Initialized: 2025-12-28T14:53:49.869618100
+Initialized: 2025-12-28T14:54:28.725652900
 
 ================================================================================
 PROGRAM STATE EXECUTION LOG - Thread ID: 1
@@ -9,7 +9,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (Ref(int) v1 (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))))))))
+  [0] (Ref(int) v1 (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] Ref(int) v1
-  [1] (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))))))
+  [1] (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] Ref(int) v1
-  [1] (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))))))
+  [1] (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))))))
+  [0] (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -145,7 +145,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))))))
+  [0] (Ref(int) v2 (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -181,7 +181,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] Ref(int) v2
-  [1] (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))))))
+  [1] (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -217,7 +217,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] Ref(int) v2
-  [1] (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))))))
+  [1] (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -252,7 +252,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))))))
+  [0] (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -288,7 +288,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))))))
+  [0] (Ref(int) v3 (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -325,7 +325,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] Ref(int) v3
-  [1] (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))))
+  [1] (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -362,7 +362,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] Ref(int) v3
-  [1] (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))))
+  [1] (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -398,7 +398,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))))
+  [0] (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -435,7 +435,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))))
+  [0] (int cnt (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))))
 
 
 --------------------------------------------------------------------------------
@@ -473,7 +473,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] int cnt
-  [1] (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))))
+  [1] (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))))
 
 
 --------------------------------------------------------------------------------
@@ -511,7 +511,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] int cnt
-  [1] (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))))
+  [1] (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))))
 
 
 --------------------------------------------------------------------------------
@@ -548,7 +548,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))))
+  [0] (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))))
 
 
 --------------------------------------------------------------------------------
@@ -586,7 +586,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (new(v1,2) (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))))
+  [0] (new(v1,2) (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))))
 
 
 --------------------------------------------------------------------------------
@@ -625,7 +625,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] new(v1,2)
-  [1] (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))
+  [1] (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))
 
 
 --------------------------------------------------------------------------------
@@ -664,7 +664,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] new(v1,2)
-  [1] (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))
+  [1] (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))
 
 
 --------------------------------------------------------------------------------
@@ -702,7 +702,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))
+  [0] (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))
 
 
 --------------------------------------------------------------------------------
@@ -742,7 +742,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (new(v2,3) (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))))
+  [0] (new(v2,3) (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))))
 
 
 --------------------------------------------------------------------------------
@@ -783,7 +783,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] new(v2,3)
-  [1] (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))
+  [1] (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))
 
 
 --------------------------------------------------------------------------------
@@ -824,7 +824,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] new(v2,3)
-  [1] (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))
+  [1] (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))
 
 
 --------------------------------------------------------------------------------
@@ -864,7 +864,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))
+  [0] (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))
 
 
 --------------------------------------------------------------------------------
@@ -905,7 +905,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (new(v3,4) (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))))
+  [0] (new(v3,4) (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))))
 
 
 --------------------------------------------------------------------------------
@@ -947,7 +947,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] new(v3,4)
-  [1] (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))
+  [1] (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))
 
 
 --------------------------------------------------------------------------------
@@ -989,7 +989,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] new(v3,4)
-  [1] (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))
+  [1] (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))
 
 
 --------------------------------------------------------------------------------
@@ -1030,7 +1030,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))
+  [0] (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))
 
 
 --------------------------------------------------------------------------------
@@ -1072,7 +1072,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (newLatch(cnt,rH(v2)) (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100))))))
+  [0] (newBarrier(cnt,rH(v2)) (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))))
 
 
 --------------------------------------------------------------------------------
@@ -1114,8 +1114,8 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] newLatch(cnt,rH(v2))
-  [1] (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))
+  [0] newBarrier(cnt,rH(v2))
+  [1] (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))
 
 
 --------------------------------------------------------------------------------
@@ -1157,8 +1157,8 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] newLatch(cnt,rH(v2))
-  [1] (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))
+  [0] newBarrier(cnt,rH(v2))
+  [1] (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))
 
 
 --------------------------------------------------------------------------------
@@ -1200,7 +1200,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))
+  [0] (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))
 
 
 --------------------------------------------------------------------------------
@@ -1242,7 +1242,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))) (await(cnt) (print(100) (countDown(cnt) print(100)))))
+  [0] (fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))) (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3)))))
 
 
 --------------------------------------------------------------------------------
@@ -1284,8 +1284,8 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))))))
-  [1] (await(cnt) (print(100) (countDown(cnt) print(100))))
+  [0] fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1)))))
+  [1] (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))
 
 
 --------------------------------------------------------------------------------
@@ -1327,8 +1327,8 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] fork((wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))))))
-  [1] (await(cnt) (print(100) (countDown(cnt) print(100))))
+  [0] fork((barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1)))))
+  [1] (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))
 
 
 --------------------------------------------------------------------------------
@@ -1370,7 +1370,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (await(cnt) (print(100) (countDown(cnt) print(100))))
+  [0] (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))
 
 
 --------------------------------------------------------------------------------
@@ -1412,7 +1412,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 2
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))
+  [0] (barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))
 
 
 --------------------------------------------------------------------------------
@@ -1454,7 +1454,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (await(cnt) (print(100) (countDown(cnt) print(100))))
+  [0] (fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))) (barrierAwait(cnt) print(rH(v3))))
 
 
 --------------------------------------------------------------------------------
@@ -1496,7 +1496,7 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 2
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] (wH(v1,(rH(v1) * 10)) (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))))
+  [0] (barrierAwait(cnt) (wH(v1,(rH(v1) * 10)) print(rH(v1))))
 
 
 --------------------------------------------------------------------------------
@@ -1538,8 +1538,8 @@ PROGRAM STATE EXECUTION LOG - Thread ID: 1
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
+  [0] fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2))))))
+  [1] (barrierAwait(cnt) print(rH(v3)))
 
 
 --------------------------------------------------------------------------------
@@ -1556,6 +1556,1197 @@ SymbolTable: {
 OUTPUT:
 --------------------------------------------------------------------------------
   [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] fork((barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2))))))
+  [1] (barrierAwait(cnt) print(rH(v3)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] (barrierAwait(cnt) print(rH(v3)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] (barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] (barrierAwait(cnt) print(rH(v3)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] (barrierAwait(cnt) (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2)))))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] print(rH(v3))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2))))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] print(rH(v3))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2))))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] print(rH(v3))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2))))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] print(rH(v3))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] barrierAwait(cnt)
+  [1] (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2))))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] print(rH(v3))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2))))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] print(rH(v3))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 2
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] (wH(v1,(rH(v1) * 10)) print(rH(v1)))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack (top to bottom):
+  [0] (wH(v2,(rH(v2) * 10)) (wH(v2,(rH(v2) * 10)) print(rH(v2))))
+
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [Empty]
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE TABLE:
+--------------------------------------------------------------------------------
+FileTable: {}
+
+--------------------------------------------------------------------------------
+HEAP TABLE:
+--------------------------------------------------------------------------------
+Heap: {
+  1 -> 2
+  2 -> 3
+  3 -> 4
+}
+
+================================================================================
+PROGRAM STATE EXECUTION LOG - Thread ID: 1
+================================================================================
+
+--------------------------------------------------------------------------------
+EXECUTION STACK:
+--------------------------------------------------------------------------------
+ExecutionStack: [Empty]
+
+--------------------------------------------------------------------------------
+SYMBOL TABLE:
+--------------------------------------------------------------------------------
+SymbolTable: {
+  cnt -> 1
+  v1 -> (1,int)
+  v2 -> (2,int)
+  v3 -> (3,int)
+}
+
+--------------------------------------------------------------------------------
+OUTPUT:
+--------------------------------------------------------------------------------
+  [0] 4
 
 ================================================================================
 
@@ -1582,7 +2773,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] wH(v1,(rH(v1) * 10))
-  [1] (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))))
+  [1] print(rH(v1))
 
 
 --------------------------------------------------------------------------------
@@ -1598,7 +2789,7 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [Empty]
+  [0] 4
 
 ================================================================================
 
@@ -1617,15 +2808,15 @@ Heap: {
 }
 
 ================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
 ================================================================================
 
 --------------------------------------------------------------------------------
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
+  [0] wH(v2,(rH(v2) * 10))
+  [1] (wH(v2,(rH(v2) * 10)) print(rH(v2)))
 
 
 --------------------------------------------------------------------------------
@@ -1641,7 +2832,7 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [Empty]
+  [0] 4
 
 ================================================================================
 
@@ -1668,7 +2859,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] wH(v1,(rH(v1) * 10))
-  [1] (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))))
+  [1] print(rH(v1))
 
 
 --------------------------------------------------------------------------------
@@ -1684,7 +2875,7 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [Empty]
+  [0] 4
 
 ================================================================================
 
@@ -1703,15 +2894,15 @@ Heap: {
 }
 
 ================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
 ================================================================================
 
 --------------------------------------------------------------------------------
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
+  [0] wH(v2,(rH(v2) * 10))
+  [1] (wH(v2,(rH(v2) * 10)) print(rH(v2)))
 
 
 --------------------------------------------------------------------------------
@@ -1727,7 +2918,7 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [Empty]
+  [0] 4
 
 ================================================================================
 
@@ -1740,177 +2931,7 @@ FileTable: {}
 HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 2
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [Empty]
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [Empty]
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 2
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (print(rH(v1)) (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [Empty]
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [Empty]
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
+  1 -> 2
   2 -> 3
   3 -> 4
 }
@@ -1924,7 +2945,6 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] print(rH(v1))
-  [1] (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))
 
 
 --------------------------------------------------------------------------------
@@ -1940,7 +2960,7 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [Empty]
+  [0] 4
 
 ================================================================================
 
@@ -1954,20 +2974,19 @@ HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
   1 -> 20
-  2 -> 3
+  2 -> 30
   3 -> 4
 }
 
 ================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
 ================================================================================
 
 --------------------------------------------------------------------------------
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
+  [0] (wH(v2,(rH(v2) * 10)) print(rH(v2)))
 
 
 --------------------------------------------------------------------------------
@@ -1983,7 +3002,7 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [Empty]
+  [0] 4
 
 ================================================================================
 
@@ -1997,7 +3016,7 @@ HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
   1 -> 20
-  2 -> 3
+  2 -> 30
   3 -> 4
 }
 
@@ -2010,7 +3029,6 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] print(rH(v1))
-  [1] (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))
 
 
 --------------------------------------------------------------------------------
@@ -2026,7 +3044,7 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [Empty]
+  [0] 4
 
 ================================================================================
 
@@ -2040,20 +3058,19 @@ HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
   1 -> 20
-  2 -> 3
+  2 -> 30
   3 -> 4
 }
 
 ================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
+PROGRAM STATE EXECUTION LOG - Thread ID: 3
 ================================================================================
 
 --------------------------------------------------------------------------------
 EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
+  [0] (wH(v2,(rH(v2) * 10)) print(rH(v2)))
 
 
 --------------------------------------------------------------------------------
@@ -2069,7 +3086,7 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [0] 20
+  [0] 4
 
 ================================================================================
 
@@ -2083,524 +3100,7 @@ HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
   1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 2
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 2
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (countDown(cnt) fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 2
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] countDown(cnt)
-  [1] fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 2
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] countDown(cnt)
-  [1] fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 2
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 2
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] fork((wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
+  2 -> 30
   3 -> 4
 }
 
@@ -2626,8 +3126,8 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
+  [0] 4
+  [1] 20
 
 ================================================================================
 
@@ -2641,181 +3141,7 @@ HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
   1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (wH(v2,(rH(v2) * 10)) (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
+  2 -> 30
   3 -> 4
 }
 
@@ -2828,7 +3154,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] wH(v2,(rH(v2) * 10))
-  [1] (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))
+  [1] print(rH(v2))
 
 
 --------------------------------------------------------------------------------
@@ -2844,8 +3170,8 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
+  [0] 4
+  [1] 20
 
 ================================================================================
 
@@ -2859,51 +3185,7 @@ HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
   1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
+  2 -> 30
   3 -> 4
 }
 
@@ -2916,7 +3198,7 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] wH(v2,(rH(v2) * 10))
-  [1] (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))
+  [1] print(rH(v2))
 
 
 --------------------------------------------------------------------------------
@@ -2932,226 +3214,8 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 3
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (print(rH(v2)) (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
+  [0] 4
+  [1] 20
 
 ================================================================================
 
@@ -3178,7 +3242,6 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] print(rH(v2))
-  [1] (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))
 
 
 --------------------------------------------------------------------------------
@@ -3194,8 +3257,8 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
+  [0] 4
+  [1] 20
 
 ================================================================================
 
@@ -3209,51 +3272,7 @@ HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
   1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
+  2 -> 300
   3 -> 4
 }
 
@@ -3266,7 +3285,6 @@ EXECUTION STACK:
 --------------------------------------------------------------------------------
 ExecutionStack (top to bottom):
   [0] print(rH(v2))
-  [1] (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))
 
 
 --------------------------------------------------------------------------------
@@ -3282,8 +3300,8 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
+  [0] 4
+  [1] 20
 
 ================================================================================
 
@@ -3297,593 +3315,7 @@ HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
   1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (countDown(cnt) fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] countDown(cnt)
-  [1] fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] countDown(cnt)
-  [1] fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 3
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] fork((wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt))))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
+  2 -> 300
   3 -> 4
 }
 
@@ -3909,10 +3341,9 @@ SymbolTable: {
 --------------------------------------------------------------------------------
 OUTPUT:
 --------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
+  [0] 4
+  [1] 20
+  [2] 300
 
 ================================================================================
 
@@ -3926,1550 +3357,7 @@ HEAP TABLE:
 --------------------------------------------------------------------------------
 Heap: {
   1 -> 20
-  2 -> 30
+  2 -> 300
   3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (wH(v3,(rH(v3) * 10)) (print(rH(v3)) countDown(cnt)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] wH(v3,(rH(v3) * 10))
-  [1] (print(rH(v3)) countDown(cnt))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] wH(v3,(rH(v3) * 10))
-  [1] (print(rH(v3)) countDown(cnt))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 4
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (print(rH(v3)) countDown(cnt))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (print(rH(v3)) countDown(cnt))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] print(rH(v3))
-  [1] countDown(cnt)
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] print(rH(v3))
-  [1] countDown(cnt)
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] countDown(cnt)
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] countDown(cnt)
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 4
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack: [Empty]
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] await(cnt)
-  [1] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (print(100) (countDown(cnt) print(100)))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] print(100)
-  [1] (countDown(cnt) print(100))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] print(100)
-  [1] (countDown(cnt) print(100))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (countDown(cnt) print(100))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-  [6] 100
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] (countDown(cnt) print(100))
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-  [6] 100
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] countDown(cnt)
-  [1] print(100)
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-  [6] 100
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] countDown(cnt)
-  [1] print(100)
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-  [6] 100
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] print(100)
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-  [6] 100
-  [7] 1
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack (top to bottom):
-  [0] print(100)
-
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-  [6] 100
-  [7] 1
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
-}
-
-================================================================================
-PROGRAM STATE EXECUTION LOG - Thread ID: 1
-================================================================================
-
---------------------------------------------------------------------------------
-EXECUTION STACK:
---------------------------------------------------------------------------------
-ExecutionStack: [Empty]
-
---------------------------------------------------------------------------------
-SYMBOL TABLE:
---------------------------------------------------------------------------------
-SymbolTable: {
-  cnt -> 1
-  v1 -> (1,int)
-  v2 -> (2,int)
-  v3 -> (3,int)
-}
-
---------------------------------------------------------------------------------
-OUTPUT:
---------------------------------------------------------------------------------
-  [0] 20
-  [1] 2
-  [2] 30
-  [3] 3
-  [4] 40
-  [5] 4
-  [6] 100
-  [7] 1
-  [8] 100
-
-================================================================================
-
---------------------------------------------------------------------------------
-FILE TABLE:
---------------------------------------------------------------------------------
-FileTable: {}
-
---------------------------------------------------------------------------------
-HEAP TABLE:
---------------------------------------------------------------------------------
-Heap: {
-  1 -> 20
-  2 -> 30
-  3 -> 40
 }
 

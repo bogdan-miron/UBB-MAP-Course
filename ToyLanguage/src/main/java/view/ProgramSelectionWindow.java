@@ -585,6 +585,85 @@ public class ProgramSelectionWindow {
                 "gui_countdownlatch_log.txt"
         ));
 
+        // Example 13: CyclicBarrier
+        // Ref int v1; Ref int v2; Ref int v3; int cnt;
+        // new(v1,2); new(v2,3); new(v3,4); newBarrier(cnt,rH(v2));
+        // fork( barrierAwait(cnt); wH(v1,rH(v1)*10); print(rH(v1)) );
+        // fork( barrierAwait(cnt); wH(v2,rH(v2)*10); wH(v2,rH(v2)*10); print(rH(v2)) );
+        // barrierAwait(cnt);
+        // print(rH(v3))
+        IStatement ex13 = new CompoundStatement(
+                new DeclarationStatement("v1", new RefType(new IntType())),
+                new CompoundStatement(
+                        new DeclarationStatement("v2", new RefType(new IntType())),
+                        new CompoundStatement(
+                                new DeclarationStatement("v3", new RefType(new IntType())),
+                                new CompoundStatement(
+                                        new DeclarationStatement("cnt", new IntType()),
+                                        new CompoundStatement(
+                                                new NewStatement("v1", new ValueExpression(new IntValue(2))),
+                                                new CompoundStatement(
+                                                        new NewStatement("v2", new ValueExpression(new IntValue(3))),
+                                                        new CompoundStatement(
+                                                                new NewStatement("v3", new ValueExpression(new IntValue(4))),
+                                                                new CompoundStatement(
+                                                                        new NewBarrierStatement("cnt", new HeapReadExpression(new VariableExpression("v2"))),
+                                                                        new CompoundStatement(
+                                                                                new ForkStatement(
+                                                                                        new CompoundStatement(
+                                                                                                new BarrierAwaitStatement("cnt"),
+                                                                                                new CompoundStatement(
+                                                                                                        new HeapWriteStatement("v1", new ArithmeticExpression(
+                                                                                                                new HeapReadExpression(new VariableExpression("v1")),
+                                                                                                                new ValueExpression(new IntValue(10)),
+                                                                                                                "*"
+                                                                                                        )),
+                                                                                                        new PrintStatement(new HeapReadExpression(new VariableExpression("v1")))
+                                                                                                )
+                                                                                        )
+                                                                                ),
+                                                                                new CompoundStatement(
+                                                                                        new ForkStatement(
+                                                                                                new CompoundStatement(
+                                                                                                        new BarrierAwaitStatement("cnt"),
+                                                                                                        new CompoundStatement(
+                                                                                                                new HeapWriteStatement("v2", new ArithmeticExpression(
+                                                                                                                        new HeapReadExpression(new VariableExpression("v2")),
+                                                                                                                        new ValueExpression(new IntValue(10)),
+                                                                                                                        "*"
+                                                                                                                )),
+                                                                                                                new CompoundStatement(
+                                                                                                                        new HeapWriteStatement("v2", new ArithmeticExpression(
+                                                                                                                                new HeapReadExpression(new VariableExpression("v2")),
+                                                                                                                                new ValueExpression(new IntValue(10)),
+                                                                                                                                "*"
+                                                                                                                        )),
+                                                                                                                        new PrintStatement(new HeapReadExpression(new VariableExpression("v2")))
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        ),
+                                                                                        new CompoundStatement(
+                                                                                                new BarrierAwaitStatement("cnt"),
+                                                                                                new PrintStatement(new HeapReadExpression(new VariableExpression("v3")))
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        programList.add(new ProgramDefinition(
+                "Example 13: CyclicBarrier",
+                ex13.toString(),
+                ex13,
+                "gui_cyclicbarrier_log.txt"
+        ));
+
         return programList;
     }
 

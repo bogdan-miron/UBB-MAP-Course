@@ -25,13 +25,14 @@ public class ForkStatement implements IStatement {
         // Create a new ProgramState (child thread) with
         // New execution stack containing the forked statement
         // Clone of the parent symbol table (deep copy)
-        // References to the same heap, fileTable, latchTable, and output
+        // References to the same heap, fileTable, latchTable, barrierTable, and output
         ProgramState newState = new ProgramState(
                 newStack,
                 state.getSymTable().clone(),
                 state.getFileTable(),
                 state.getHeap(),
                 state.getLatchTable(),
+                state.getBarrierTable(),
                 state.getOutput()
         );
 
