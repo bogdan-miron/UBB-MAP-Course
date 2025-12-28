@@ -1044,6 +1044,86 @@ public class ProgramSelectionWindow {
                 "gui_sleep_log.txt"
         ));
 
+        // Example 19: Counting Semaphore
+        // Ref int v1; int cnt;
+        // new(v1, 1);
+        // newSemaphore(cnt, rh(v1));
+        // fork(acquire(cnt); wh(v1,rh(v1)*10); print(rh(v1)); release(cnt));
+        // fork(acquire(cnt); wh(v1,rh(v1)*10); wh(v1,rh(v1)*2); print(rh(v1)); release(cnt));
+        // acquire(cnt); print(rh(v1)-1); release(cnt);
+        IStatement ex19 = new CompoundStatement(
+                new DeclarationStatement("v1", new RefType(new IntType())),
+                new CompoundStatement(
+                        new DeclarationStatement("cnt", new IntType()),
+                        new CompoundStatement(
+                                new NewStatement("v1", new ValueExpression(new IntValue(1))),
+                                new CompoundStatement(
+                                        new NewSemaphoreStatement("cnt", new HeapReadExpression(new VariableExpression("v1"))),
+                                        new CompoundStatement(
+                                                new ForkStatement(
+                                                        new CompoundStatement(
+                                                                new AcquireStatement("cnt"),
+                                                                new CompoundStatement(
+                                                                        new HeapWriteStatement("v1", new ArithmeticExpression(
+                                                                                new HeapReadExpression(new VariableExpression("v1")),
+                                                                                new ValueExpression(new IntValue(10)),
+                                                                                "*"
+                                                                        )),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new HeapReadExpression(new VariableExpression("v1"))),
+                                                                                new ReleaseStatement("cnt")
+                                                                        )
+                                                                )
+                                                        )
+                                                ),
+                                                new CompoundStatement(
+                                                        new ForkStatement(
+                                                                new CompoundStatement(
+                                                                        new AcquireStatement("cnt"),
+                                                                        new CompoundStatement(
+                                                                                new HeapWriteStatement("v1", new ArithmeticExpression(
+                                                                                        new HeapReadExpression(new VariableExpression("v1")),
+                                                                                        new ValueExpression(new IntValue(10)),
+                                                                                        "*"
+                                                                                )),
+                                                                                new CompoundStatement(
+                                                                                        new HeapWriteStatement("v1", new ArithmeticExpression(
+                                                                                                new HeapReadExpression(new VariableExpression("v1")),
+                                                                                                new ValueExpression(new IntValue(2)),
+                                                                                                "*"
+                                                                                        )),
+                                                                                        new CompoundStatement(
+                                                                                                new PrintStatement(new HeapReadExpression(new VariableExpression("v1"))),
+                                                                                                new ReleaseStatement("cnt")
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                )
+                                                        ),
+                                                        new CompoundStatement(
+                                                                new AcquireStatement("cnt"),
+                                                                new CompoundStatement(
+                                                                        new PrintStatement(new ArithmeticExpression(
+                                                                                new HeapReadExpression(new VariableExpression("v1")),
+                                                                                new ValueExpression(new IntValue(1)),
+                                                                                "-"
+                                                                        )),
+                                                                        new ReleaseStatement("cnt")
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        programList.add(new ProgramDefinition(
+                "Example 19: Counting Semaphore",
+                ex19.toString(),
+                ex19,
+                "gui_semaphore_log.txt"
+        ));
+
         return programList;
     }
 

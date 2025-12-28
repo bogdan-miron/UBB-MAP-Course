@@ -34,6 +34,7 @@ public class MainWindow {
     private TableView<LatchEntry> latchTableView;   // (b2) Latch table
     private TableView<BarrierEntry> barrierTableView; // (b3) Barrier table
     private TableView<LockEntry> lockTableView;     // (b4) Lock table
+    private TableView<SemaphoreEntry> semaphoreTableView; // (b5) Semaphore table
     private ListView<String> outputListView;         // (c) Output
     private ListView<String> fileTableListView;      // (d) File table
     private ListView<Integer> prgStateIdListView;    // (e) PrgState IDs
@@ -183,6 +184,32 @@ public class MainWindow {
         }
     }
 
+    public static class SemaphoreEntry {
+        private final SimpleIntegerProperty location;
+        private final SimpleIntegerProperty permits;
+
+        public SemaphoreEntry(Integer location, Integer permits) {
+            this.location = new SimpleIntegerProperty(location);
+            this.permits = new SimpleIntegerProperty(permits);
+        }
+
+        public int getLocation() {
+            return location.get();
+        }
+
+        public int getPermits() {
+            return permits.get();
+        }
+
+        public SimpleIntegerProperty locationProperty() {
+            return location;
+        }
+
+        public SimpleIntegerProperty permitsProperty() {
+            return permits;
+        }
+    }
+
     public MainWindow(Controller controller, String programName) {
         this.controller = controller;
         this.programName = programName;
@@ -237,7 +264,7 @@ public class MainWindow {
         VBox centerPanel = new VBox(10);
         centerPanel.setPadding(new Insets(10, 0, 10, 0));
 
-        // top section: Heap, Latch Table, Barrier Table, and Output side by side
+        // top section: Heap, Latch Table, Barrier Table, Lock Table, Semaphore Table, and Output side by side
         SplitPane topSplit = new SplitPane();
         topSplit.setOrientation(Orientation.HORIZONTAL);
         topSplit.setPrefHeight(250);
@@ -246,10 +273,11 @@ public class MainWindow {
         VBox latchSection = createLatchSection();
         VBox barrierSection = createBarrierSection();
         VBox lockSection = createLockSection();
+        VBox semaphoreSection = createSemaphoreSection();
         VBox outputSection = createOutputSection();
 
-        topSplit.getItems().addAll(heapSection, latchSection, barrierSection, lockSection, outputSection);
-        topSplit.setDividerPositions(0.20, 0.40, 0.60, 0.80);
+        topSplit.getItems().addAll(heapSection, latchSection, barrierSection, lockSection, semaphoreSection, outputSection);
+        topSplit.setDividerPositions(0.167, 0.333, 0.50, 0.667, 0.833);
 
         // middle section: FileTable and PrgState IDs side by side
         SplitPane middleSplit = new SplitPane();
@@ -379,6 +407,31 @@ public class MainWindow {
 
         VBox.setVgrow(lockTableView, Priority.ALWAYS);
         section.getChildren().addAll(label, lockTableView);
+        return section;
+    }
+
+    private VBox createSemaphoreSection() {
+        VBox section = new VBox(5);
+
+        Label label = new Label("Semaphore Table");
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+
+        semaphoreTableView = new TableView<>();
+        semaphoreTableView.setPlaceholder(new Label("No semaphores allocated"));
+
+        TableColumn<SemaphoreEntry, Integer> locationCol = new TableColumn<>("Location");
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        locationCol.setPrefWidth(100);
+
+        TableColumn<SemaphoreEntry, Integer> permitsCol = new TableColumn<>("Permits");
+        permitsCol.setCellValueFactory(new PropertyValueFactory<>("permits"));
+        permitsCol.setPrefWidth(100);
+
+        semaphoreTableView.getColumns().addAll(locationCol, permitsCol);
+        semaphoreTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        VBox.setVgrow(semaphoreTableView, Priority.ALWAYS);
+        section.getChildren().addAll(label, semaphoreTableView);
         return section;
     }
 
@@ -569,6 +622,7 @@ public class MainWindow {
             latchTableView.setItems(FXCollections.observableArrayList());
             barrierTableView.setItems(FXCollections.observableArrayList());
             lockTableView.setItems(FXCollections.observableArrayList());
+            semaphoreTableView.setItems(FXCollections.observableArrayList());
             outputListView.setItems(FXCollections.observableArrayList());
             fileTableListView.setItems(FXCollections.observableArrayList());
             prgStateIdListView.setItems(FXCollections.observableArrayList());
@@ -616,6 +670,14 @@ public class MainWindow {
             lockEntries.add(new LockEntry(location, displayValue));
         }
         lockTableView.setItems(lockEntries);
+
+        // (b5) update Semaphore Table (shared across all states)
+        Map<Integer, Integer> semaphoreTable = firstState.getSemaphoreTable().getContent();
+        ObservableList<SemaphoreEntry> semaphoreEntries = FXCollections.observableArrayList();
+        for (Map.Entry<Integer, Integer> entry : semaphoreTable.entrySet()) {
+            semaphoreEntries.add(new SemaphoreEntry(entry.getKey(), entry.getValue()));
+        }
+        semaphoreTableView.setItems(semaphoreEntries);
 
         // (c) update Output (shared across all states)
         List<IValue> output = firstState.getOutput().getOutput();
