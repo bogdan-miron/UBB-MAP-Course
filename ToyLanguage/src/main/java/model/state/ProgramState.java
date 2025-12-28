@@ -10,25 +10,27 @@ public class ProgramState {
     private final IOutput output;
     private final IFileTable fileTable;
     private final IHeap heap;
+    private final ILatchTable latchTable;
     private final int id;
 
     private static int nextId = 1;
 
-    public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap, IOutput output) {
+    public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap, ILatchTable latchTable, IOutput output) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.fileTable = fileTable;
         this.heap = heap;
+        this.latchTable = latchTable;
         this.output = output;
         this.id = getNextId();
     }
 
     public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap) {
-        this(exeStack, symTable, fileTable, heap, new Output());
+        this(exeStack, symTable, fileTable, heap, new LatchTable(), new Output());
     }
 
     public ProgramState(IExecutionStack exeStack, ISymbolTable symTable) {
-        this(exeStack, symTable, new FileTable(), new Heap(), new Output());
+        this(exeStack, symTable, new FileTable(), new Heap(), new LatchTable(), new Output());
     }
 
     private static synchronized int getNextId() {
@@ -72,6 +74,10 @@ public class ProgramState {
         return heap;
     }
 
+    public ILatchTable getLatchTable() {
+        return latchTable;
+    }
+
     @Override
     public String toString() {
         return "ProgramState{" +
@@ -81,6 +87,7 @@ public class ProgramState {
                 ", output=" + output +
                 ", fileTable=" + fileTable +
                 ", heap=" + heap +
+                ", latchTable=" + latchTable +
                 '}';
     }
 }

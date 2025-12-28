@@ -30,6 +30,7 @@ public class MainWindow {
     // ui components
     private TextField prgStateCountField;           // (a) number of PrgStates
     private TableView<HeapEntry> heapTableView;     // (b) Heap table
+    private TableView<LatchEntry> latchTableView;   // (b2) Latch table
     private ListView<String> outputListView;         // (c) Output
     private ListView<String> fileTableListView;      // (d) File table
     private ListView<Integer> prgStateIdListView;    // (e) PrgState IDs
@@ -91,6 +92,32 @@ public class MainWindow {
         }
     }
 
+    public static class LatchEntry {
+        private final SimpleIntegerProperty location;
+        private final SimpleIntegerProperty value;
+
+        public LatchEntry(Integer location, Integer value) {
+            this.location = new SimpleIntegerProperty(location);
+            this.value = new SimpleIntegerProperty(value);
+        }
+
+        public int getLocation() {
+            return location.get();
+        }
+
+        public int getValue() {
+            return value.get();
+        }
+
+        public SimpleIntegerProperty locationProperty() {
+            return location;
+        }
+
+        public SimpleIntegerProperty valueProperty() {
+            return value;
+        }
+    }
+
     public MainWindow(Controller controller, String programName) {
         this.controller = controller;
         this.programName = programName;
@@ -145,16 +172,17 @@ public class MainWindow {
         VBox centerPanel = new VBox(10);
         centerPanel.setPadding(new Insets(10, 0, 10, 0));
 
-        // top section: Heap and Output side by side
+        // top section: Heap, Latch Table, and Output side by side
         SplitPane topSplit = new SplitPane();
         topSplit.setOrientation(Orientation.HORIZONTAL);
         topSplit.setPrefHeight(250);
 
         VBox heapSection = createHeapSection();
+        VBox latchSection = createLatchSection();
         VBox outputSection = createOutputSection();
 
-        topSplit.getItems().addAll(heapSection, outputSection);
-        topSplit.setDividerPositions(0.5);
+        topSplit.getItems().addAll(heapSection, latchSection, outputSection);
+        topSplit.setDividerPositions(0.33, 0.66);
 
         // middle section: FileTable and PrgState IDs side by side
         SplitPane middleSplit = new SplitPane();
@@ -205,6 +233,31 @@ public class MainWindow {
 
         VBox.setVgrow(heapTableView, Priority.ALWAYS);
         section.getChildren().addAll(label, heapTableView);
+        return section;
+    }
+
+    private VBox createLatchSection() {
+        VBox section = new VBox(5);
+
+        Label label = new Label("Latch Table");
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+
+        latchTableView = new TableView<>();
+        latchTableView.setPlaceholder(new Label("No latches allocated"));
+
+        TableColumn<LatchEntry, Integer> locationCol = new TableColumn<>("Location");
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        locationCol.setPrefWidth(100);
+
+        TableColumn<LatchEntry, Integer> valueCol = new TableColumn<>("Count");
+        valueCol.setCellValueFactory(new PropertyValueFactory<>("value"));
+        valueCol.setPrefWidth(100);
+
+        latchTableView.getColumns().addAll(locationCol, valueCol);
+        latchTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        VBox.setVgrow(latchTableView, Priority.ALWAYS);
+        section.getChildren().addAll(label, latchTableView);
         return section;
     }
 
@@ -392,6 +445,7 @@ public class MainWindow {
         if (prgList.isEmpty()) {
             // clear all displays if no programs (shouldn't happen normally)
             heapTableView.setItems(FXCollections.observableArrayList());
+            latchTableView.setItems(FXCollections.observableArrayList());
             outputListView.setItems(FXCollections.observableArrayList());
             fileTableListView.setItems(FXCollections.observableArrayList());
             prgStateIdListView.setItems(FXCollections.observableArrayList());
@@ -408,6 +462,14 @@ public class MainWindow {
             heapEntries.add(new HeapEntry(entry.getKey(), entry.getValue().toString()));
         }
         heapTableView.setItems(heapEntries);
+
+        // (b2) update Latch Table (shared across all states)
+        Map<Integer, Integer> latchTable = firstState.getLatchTable().getContent();
+        ObservableList<LatchEntry> latchEntries = FXCollections.observableArrayList();
+        for (Map.Entry<Integer, Integer> entry : latchTable.entrySet()) {
+            latchEntries.add(new LatchEntry(entry.getKey(), entry.getValue()));
+        }
+        latchTableView.setItems(latchEntries);
 
         // (c) update Output (shared across all states)
         List<IValue> output = firstState.getOutput().getOutput();

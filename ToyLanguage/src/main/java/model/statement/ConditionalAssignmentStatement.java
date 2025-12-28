@@ -8,18 +8,14 @@ import model.type.IType;
 
 import java.util.Map;
 
-/**
- * Conditional Assignment Statement: v = exp1 ? exp2 : exp3
- * When exp1 is true, the value of exp2 is assigned to v.
- * Otherwise, v takes the value of exp3.
- *
- * Execution transforms this into: if (exp1) then v=exp2 else v=exp3
- */
+
+// Execution transforms this into: if (exp1) then v=exp2 else v=exp3
+
 public class ConditionalAssignmentStatement implements IStatement {
     private final String variableName;
-    private final IExpression condition;      // exp1 - must be boolean
-    private final IExpression thenExpression; // exp2 - same type as variable
-    private final IExpression elseExpression; // exp3 - same type as variable
+    private final IExpression condition;
+    private final IExpression thenExpression;
+    private final IExpression elseExpression;
 
     public ConditionalAssignmentStatement(String variableName, IExpression condition,
                                          IExpression thenExpression, IExpression elseExpression) {
@@ -31,17 +27,17 @@ public class ConditionalAssignmentStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState state) throws TypeException {
-        // Transform: v = exp1 ? exp2 : exp3
-        // Into: if (exp1) then v=exp2 else v=exp3
+        // v = exp1 ? exp2 : exp3
+        // if (exp1) then v=exp2 else v=exp3
 
-        // Create assignment statements for then and else branches
+        // assignment statements for then and else branches
         IStatement thenAssignment = new AssignmentStatement(variableName, thenExpression);
         IStatement elseAssignment = new AssignmentStatement(variableName, elseExpression);
 
-        // Create the if statement with the condition and assignments
+        // create the if statement with the condition and assignments
         IStatement transformedStatement = new IfStatement(condition, thenAssignment, elseAssignment);
 
-        // Push the transformed statement onto the execution stack
+        // push the transformed statement onto the execution stack
         state.getExeStack().push(transformedStatement);
 
         return null;
@@ -84,7 +80,7 @@ public class ConditionalAssignmentStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new ConditionalAssignmentStatement(
-                variableName,  // String is immutable, no need to copy
+                variableName,
                 condition.deepCopy(),
                 thenExpression.deepCopy(),
                 elseExpression.deepCopy()

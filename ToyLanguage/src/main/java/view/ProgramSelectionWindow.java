@@ -487,6 +487,104 @@ public class ProgramSelectionWindow {
                 "gui_conditional_assignment_log.txt"
         ));
 
+        // Example 12: CountDownLatch
+        // Ref int v1; Ref int v2; Ref int v3; int cnt;
+        // new(v1,2); new(v2,3); new(v3,4); newLatch(cnt,rH(v2));
+        // fork(wH(v1,rH(v1)*10); print(rH(v1)); countDown(cnt);
+        //   fork(wH(v2,rH(v2)*10); print(rH(v2)); countDown(cnt);
+        //     fork(wH(v3,rH(v3)*10); print(rH(v3)); countDown(cnt))
+        //   )
+        // );
+        // await(cnt);
+        // print(100);
+        // countDown(cnt);
+        // print(100)
+        IStatement ex12 = new CompoundStatement(
+                new DeclarationStatement("v1", new RefType(new IntType())),
+                new CompoundStatement(
+                        new DeclarationStatement("v2", new RefType(new IntType())),
+                        new CompoundStatement(
+                                new DeclarationStatement("v3", new RefType(new IntType())),
+                                new CompoundStatement(
+                                        new DeclarationStatement("cnt", new IntType()),
+                                        new CompoundStatement(
+                                                new NewStatement("v1", new ValueExpression(new IntValue(2))),
+                                                new CompoundStatement(
+                                                        new NewStatement("v2", new ValueExpression(new IntValue(3))),
+                                                        new CompoundStatement(
+                                                                new NewStatement("v3", new ValueExpression(new IntValue(4))),
+                                                                new CompoundStatement(
+                                                                        new NewLatchStatement("cnt", new HeapReadExpression(new VariableExpression("v2"))),
+                                                                        new CompoundStatement(
+                                                                                new ForkStatement(
+                                                                                        new CompoundStatement(
+                                                                                                new HeapWriteStatement("v1", new ArithmeticExpression(
+                                                                                                        new HeapReadExpression(new VariableExpression("v1")),
+                                                                                                        new ValueExpression(new IntValue(10)),
+                                                                                                        "*"
+                                                                                                )),
+                                                                                                new CompoundStatement(
+                                                                                                        new PrintStatement(new HeapReadExpression(new VariableExpression("v1"))),
+                                                                                                        new CompoundStatement(
+                                                                                                                new CountDownStatement("cnt"),
+                                                                                                                new ForkStatement(
+                                                                                                                        new CompoundStatement(
+                                                                                                                                new HeapWriteStatement("v2", new ArithmeticExpression(
+                                                                                                                                        new HeapReadExpression(new VariableExpression("v2")),
+                                                                                                                                        new ValueExpression(new IntValue(10)),
+                                                                                                                                        "*"
+                                                                                                                                )),
+                                                                                                                                new CompoundStatement(
+                                                                                                                                        new PrintStatement(new HeapReadExpression(new VariableExpression("v2"))),
+                                                                                                                                        new CompoundStatement(
+                                                                                                                                                new CountDownStatement("cnt"),
+                                                                                                                                                new ForkStatement(
+                                                                                                                                                        new CompoundStatement(
+                                                                                                                                                                new HeapWriteStatement("v3", new ArithmeticExpression(
+                                                                                                                                                                        new HeapReadExpression(new VariableExpression("v3")),
+                                                                                                                                                                        new ValueExpression(new IntValue(10)),
+                                                                                                                                                                        "*"
+                                                                                                                                                                )),
+                                                                                                                                                                new CompoundStatement(
+                                                                                                                                                                        new PrintStatement(new HeapReadExpression(new VariableExpression("v3"))),
+                                                                                                                                                                        new CountDownStatement("cnt")
+                                                                                                                                                                )
+                                                                                                                                                        )
+                                                                                                                                                )
+                                                                                                                                        )
+                                                                                                                                )
+                                                                                                                        )
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                ),
+                                                                                new CompoundStatement(
+                                                                                        new AwaitStatement("cnt"),
+                                                                                        new CompoundStatement(
+                                                                                                new PrintStatement(new ValueExpression(new IntValue(100))),
+                                                                                                new CompoundStatement(
+                                                                                                        new CountDownStatement("cnt"),
+                                                                                                        new PrintStatement(new ValueExpression(new IntValue(100)))
+                                                                                                )
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        programList.add(new ProgramDefinition(
+                "Example 12: CountDownLatch",
+                ex12.toString(),
+                ex12,
+                "gui_countdownlatch_log.txt"
+        ));
+
         return programList;
     }
 
