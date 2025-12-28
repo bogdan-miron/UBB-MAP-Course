@@ -852,6 +852,139 @@ public class ProgramSelectionWindow {
                 "gui_lock_log.txt"
         ));
 
+        // Example 16: Switch Statement
+        // int a; int b; int c;
+        // a=1; b=10; c=100;
+        // switch(a) (case(1): print(b)) (case(2): print(c)) (default: print(999));
+        // switch(a+1) (case(1): print(b)) (case(2): print(c)) (default: print(999));
+        // switch(a+5) (case(1): print(b)) (case(2): print(c)) (default: print(999))
+        IStatement ex16 = new CompoundStatement(
+                new DeclarationStatement("a", new IntType()),
+                new CompoundStatement(
+                        new DeclarationStatement("b", new IntType()),
+                        new CompoundStatement(
+                                new DeclarationStatement("c", new IntType()),
+                                new CompoundStatement(
+                                        new AssignmentStatement("a", new ValueExpression(new IntValue(1))),
+                                        new CompoundStatement(
+                                                new AssignmentStatement("b", new ValueExpression(new IntValue(10))),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement("c", new ValueExpression(new IntValue(100))),
+                                                        new CompoundStatement(
+                                                                // First switch: a=1, should match case 1, print b (10)
+                                                                new SwitchStatement(
+                                                                        new VariableExpression("a"),                    // switch on a (value 1)
+                                                                        new ValueExpression(new IntValue(1)),           // case 1
+                                                                        new ValueExpression(new IntValue(2)),           // case 2
+                                                                        new PrintStatement(new VariableExpression("b")), // print 10
+                                                                        new PrintStatement(new VariableExpression("c")), // print 100
+                                                                        new PrintStatement(new ValueExpression(new IntValue(999))) // default
+                                                                ),
+                                                                new CompoundStatement(
+                                                                        // Second switch: a+1=2, should match case 2, print c (100)
+                                                                        new SwitchStatement(
+                                                                                new ArithmeticExpression(
+                                                                                        new VariableExpression("a"),
+                                                                                        new ValueExpression(new IntValue(1)),
+                                                                                        "+"
+                                                                                ),                                              // switch on a+1 (value 2)
+                                                                                new ValueExpression(new IntValue(1)),           // case 1
+                                                                                new ValueExpression(new IntValue(2)),           // case 2
+                                                                                new PrintStatement(new VariableExpression("b")), // print 10
+                                                                                new PrintStatement(new VariableExpression("c")), // print 100
+                                                                                new PrintStatement(new ValueExpression(new IntValue(999))) // default
+                                                                        ),
+                                                                        // Third switch: a+5=6, no match, print default (999)
+                                                                        new SwitchStatement(
+                                                                                new ArithmeticExpression(
+                                                                                        new VariableExpression("a"),
+                                                                                        new ValueExpression(new IntValue(5)),
+                                                                                        "+"
+                                                                                ),                                              // switch on a+5 (value 6)
+                                                                                new ValueExpression(new IntValue(1)),           // case 1
+                                                                                new ValueExpression(new IntValue(2)),           // case 2
+                                                                                new PrintStatement(new VariableExpression("b")), // print 10
+                                                                                new PrintStatement(new VariableExpression("c")), // print 100
+                                                                                new PrintStatement(new ValueExpression(new IntValue(999))) // default
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        programList.add(new ProgramDefinition(
+                "Example 16: Switch Statement",
+                ex16.toString(),
+                ex16,
+                "gui_switch_log.txt"
+        ));
+
+        // Example 17: Switch Statement 2
+        // int a; int b; int c;
+        // a=1; b=2; c=5;
+        // switch(a*10) (case(b*c): print(a);print(b)) (case(10): print(100);print(200)) (default: print(300));
+        // print(300)
+        // Expected output: {1, 2, 300}
+        IStatement ex17 = new CompoundStatement(
+                new DeclarationStatement("a", new IntType()),
+                new CompoundStatement(
+                        new DeclarationStatement("b", new IntType()),
+                        new CompoundStatement(
+                                new DeclarationStatement("c", new IntType()),
+                                new CompoundStatement(
+                                        new AssignmentStatement("a", new ValueExpression(new IntValue(1))),
+                                        new CompoundStatement(
+                                                new AssignmentStatement("b", new ValueExpression(new IntValue(2))),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement("c", new ValueExpression(new IntValue(5))),
+                                                        new CompoundStatement(
+                                                                new SwitchStatement(
+                                                                        // switch on: a*10 = 1*10 = 10
+                                                                        new ArithmeticExpression(
+                                                                                new VariableExpression("a"),
+                                                                                new ValueExpression(new IntValue(10)),
+                                                                                "*"
+                                                                        ),
+                                                                        // case 1: b*c = 2*5 = 10 (matches!)
+                                                                        new ArithmeticExpression(
+                                                                                new VariableExpression("b"),
+                                                                                new VariableExpression("c"),
+                                                                                "*"
+                                                                        ),
+                                                                        // case 2: 10
+                                                                        new ValueExpression(new IntValue(10)),
+                                                                        // case 1 body: print(a); print(b)
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new VariableExpression("a")),
+                                                                                new PrintStatement(new VariableExpression("b"))
+                                                                        ),
+                                                                        // case 2 body: print(100); print(200)
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new ValueExpression(new IntValue(100))),
+                                                                                new PrintStatement(new ValueExpression(new IntValue(200)))
+                                                                        ),
+                                                                        // default: print(300)
+                                                                        new PrintStatement(new ValueExpression(new IntValue(300)))
+                                                                ),
+                                                                // After switch: print(300)
+                                                                new PrintStatement(new ValueExpression(new IntValue(300)))
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        programList.add(new ProgramDefinition(
+                "Example 17: Switch Statement 2",
+                ex17.toString(),
+                ex17,
+                "gui_switch_complex_log.txt"
+        ));
+
         return programList;
     }
 
