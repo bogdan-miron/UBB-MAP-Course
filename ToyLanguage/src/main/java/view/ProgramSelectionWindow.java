@@ -664,6 +664,45 @@ public class ProgramSelectionWindow {
                 "gui_cyclicbarrier_log.txt"
         ));
 
+        // Example 14: For Statement
+        // Ref int a; new(a,20);
+        // (for(v=0;v<3;v=v+1) fork(print(v);v=v*rh(a)));
+        // print(rh(a))
+        IStatement ex14 = new CompoundStatement(
+                new DeclarationStatement("a", new RefType(new IntType())),
+                new CompoundStatement(
+                        new NewStatement("a", new ValueExpression(new IntValue(20))),
+                        new CompoundStatement(
+                                new ForStatement("v",
+                                        new ValueExpression(new IntValue(0)),  // v=0
+                                        new ValueExpression(new IntValue(3)),  // v<3
+                                        new ArithmeticExpression(              // v=v+1
+                                                new VariableExpression("v"),
+                                                new ValueExpression(new IntValue(1)),
+                                                "+"
+                                        ),
+                                        new ForkStatement(                     // fork(print(v);v=v*rh(a))
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VariableExpression("v")),
+                                                        new AssignmentStatement("v", new ArithmeticExpression(
+                                                                new VariableExpression("v"),
+                                                                new HeapReadExpression(new VariableExpression("a")),
+                                                                "*"
+                                                        ))
+                                                )
+                                        )
+                                ),
+                                new PrintStatement(new HeapReadExpression(new VariableExpression("a")))
+                        )
+                )
+        );
+        programList.add(new ProgramDefinition(
+                "Example 14: For Statement",
+                ex14.toString(),
+                ex14,
+                "gui_for_log.txt"
+        ));
+
         return programList;
     }
 
