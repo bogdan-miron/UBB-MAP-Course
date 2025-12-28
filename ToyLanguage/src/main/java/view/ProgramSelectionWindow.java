@@ -985,6 +985,65 @@ public class ProgramSelectionWindow {
                 "gui_switch_complex_log.txt"
         ));
 
+        // Example 18: Sleep Statement
+        // int v;
+        // while (v < 3) {
+        //     fork(print(v); v=v+1);
+        //     v=v+1;
+        // }
+        // sleep(5);
+        // print(v*10)
+        // Expected output: {0, 1, 2, 30} (order may vary due to thread scheduling)
+        IStatement ex18 = new CompoundStatement(
+                new DeclarationStatement("v", new IntType()),
+                new CompoundStatement(
+                        new WhileStatement(
+                                new RelationalExpression(
+                                        new VariableExpression("v"),
+                                        new ValueExpression(new IntValue(3)),
+                                        "<"
+                                ),
+                                new CompoundStatement(
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VariableExpression("v")),
+                                                        new AssignmentStatement("v",
+                                                                new ArithmeticExpression(
+                                                                        new VariableExpression("v"),
+                                                                        new ValueExpression(new IntValue(1)),
+                                                                        "+"
+                                                                )
+                                                        )
+                                                )
+                                        ),
+                                        new AssignmentStatement("v",
+                                                new ArithmeticExpression(
+                                                        new VariableExpression("v"),
+                                                        new ValueExpression(new IntValue(1)),
+                                                        "+"
+                                                )
+                                        )
+                                )
+                        ),
+                        new CompoundStatement(
+                                new SleepStatement(5),
+                                new PrintStatement(
+                                        new ArithmeticExpression(
+                                                new VariableExpression("v"),
+                                                new ValueExpression(new IntValue(10)),
+                                                "*"
+                                        )
+                                )
+                        )
+                )
+        );
+        programList.add(new ProgramDefinition(
+                "Example 18: Sleep Statement",
+                ex18.toString(),
+                ex18,
+                "gui_sleep_log.txt"
+        ));
+
         return programList;
     }
 
