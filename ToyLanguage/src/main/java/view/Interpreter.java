@@ -190,6 +190,38 @@ public class Interpreter {
         IRepository repo5 = new InMemoryRepository("repeat_until_log.txt");
         Controller ctr5 = new Controller(ex5, repo5, true);
 
+        // Example 6: MUL expression
+        // v1=2; v2=3; if(v1 != 0) then print(MUL(v1,v2)) else print(v1)
+        // MUL(v1,v2) = (v1*v2) - (v1+v2) = (2*3) - (2+3) = 6 - 5 = 1
+        // Expected output: {1}
+        IStatement ex6 = new CompoundStatement(
+                new DeclarationStatement("v1", new IntType()),
+                new CompoundStatement(
+                        new AssignmentStatement("v1", new ValueExpression(new IntValue(2))),
+                        new CompoundStatement(
+                                new DeclarationStatement("v2", new IntType()),
+                                new CompoundStatement(
+                                        new AssignmentStatement("v2", new ValueExpression(new IntValue(3))),
+                                        new IfStatement(
+                                                new RelationalExpression(
+                                                        new VariableExpression("v1"),
+                                                        new ValueExpression(new IntValue(0)),
+                                                        "!="
+                                                ),
+                                                new PrintStatement(new MulExpression(
+                                                        new VariableExpression("v1"),
+                                                        new VariableExpression("v2")
+                                                )),
+                                                new PrintStatement(new VariableExpression("v1"))
+                                        )
+                                )
+                        )
+                )
+        );
+
+        IRepository repo6 = new InMemoryRepository("mul_test_log.txt");
+        Controller ctr6 = new Controller(ex6, repo6, true);
+
         // Create text menu and add commands
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
@@ -198,6 +230,7 @@ public class Interpreter {
         menu.addCommand(new RunExample("3", ex3.toString(), ctr3));
         menu.addCommand(new RunExample("4", "Fork Example: " + ex4.toString(), ctr4));
         menu.addCommand(new RunExample("5", "Repeat...Until: " + ex5.toString(), ctr5));
+        menu.addCommand(new RunExample("6", "MUL Expression: " + ex6.toString(), ctr6));
 
         // Show the menu
         menu.show();

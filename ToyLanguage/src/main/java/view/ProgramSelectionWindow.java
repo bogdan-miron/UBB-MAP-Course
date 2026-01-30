@@ -1238,6 +1238,49 @@ public class ProgramSelectionWindow {
                 procTable
         ));
 
+        // Example 21: MUL Expression
+        // v1=2; v2=3; if(v1 != 0) then print(MUL(v1,v2)) else print(v1)
+        // MUL(v1,v2) = (v1*v2) - (v1+v2) = (2*3) - (2+3) = 6 - 5 = 1
+        // Expected output: {1}
+        IStatement ex21 = new CompoundStatement(
+                new DeclarationStatement("v1", new IntType()),
+                new CompoundStatement(
+                        new AssignmentStatement("v1", new ValueExpression(new IntValue(2))),
+                        new CompoundStatement(
+                                new DeclarationStatement("v2", new IntType()),
+                                new CompoundStatement(
+                                        new AssignmentStatement("v2", new ValueExpression(new IntValue(3))),
+                                        new IfStatement(
+                                                new RelationalExpression(
+                                                        new VariableExpression("v1"),
+                                                        new ValueExpression(new IntValue(0)),
+                                                        "!="
+                                                ),
+                                                new PrintStatement(new MulExpression(
+                                                        new VariableExpression("v1"),
+                                                        new VariableExpression("v2")
+                                                )),
+                                                new PrintStatement(new VariableExpression("v1"))
+                                        )
+                                )
+                        )
+                )
+        );
+
+        String ex21Description = "MUL Expression:\n" +
+                "  int v1; int v2;\n" +
+                "  v1=2; v2=3;\n" +
+                "  if(v1 != 0) then print(MUL(v1,v2)) else print(v1)\n\n" +
+                "MUL(exp1,exp2) = (exp1*exp2) - (exp1+exp2)\n" +
+                "MUL(2,3) = (2*3) - (2+3) = 6 - 5 = 1\n\n";
+
+        programList.add(new ProgramDefinition(
+                "Example 21: MUL Expression",
+                ex21Description,
+                ex21,
+                "gui_mul_log.txt"
+        ));
+
         return programList;
     }
 
