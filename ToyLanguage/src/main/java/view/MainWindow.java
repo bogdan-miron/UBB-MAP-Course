@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.exception.RepositoryException;
 import model.state.*;
+import model.statement.IStatement;
 import model.util.Pair;
 import model.value.IValue;
 
@@ -35,6 +36,7 @@ public class MainWindow {
     private TableView<BarrierEntry> barrierTableView; // (b3) Barrier table
     private TableView<LockEntry> lockTableView;     // (b4) Lock table
     private TableView<SemaphoreEntry> semaphoreTableView; // (b5) Semaphore table
+    private TableView<ProcEntry> procTableView;      // (b6) Procedure table
     private ListView<String> outputListView;         // (c) Output
     private ListView<String> fileTableListView;      // (d) File table
     private ListView<Integer> prgStateIdListView;    // (e) PrgState IDs
@@ -210,6 +212,32 @@ public class MainWindow {
         }
     }
 
+    public static class ProcEntry {
+        private final SimpleStringProperty signature;
+        private final SimpleStringProperty body;
+
+        public ProcEntry(String signature, String body) {
+            this.signature = new SimpleStringProperty(signature);
+            this.body = new SimpleStringProperty(body);
+        }
+
+        public String getSignature() {
+            return signature.get();
+        }
+
+        public String getBody() {
+            return body.get();
+        }
+
+        public SimpleStringProperty signatureProperty() {
+            return signature;
+        }
+
+        public SimpleStringProperty bodyProperty() {
+            return body;
+        }
+    }
+
     public MainWindow(Controller controller, String programName) {
         this.controller = controller;
         this.programName = programName;
@@ -274,10 +302,11 @@ public class MainWindow {
         VBox barrierSection = createBarrierSection();
         VBox lockSection = createLockSection();
         VBox semaphoreSection = createSemaphoreSection();
+        VBox procSection = createProcSection();
         VBox outputSection = createOutputSection();
 
-        topSplit.getItems().addAll(heapSection, latchSection, barrierSection, lockSection, semaphoreSection, outputSection);
-        topSplit.setDividerPositions(0.167, 0.333, 0.50, 0.667, 0.833);
+        topSplit.getItems().addAll(heapSection, latchSection, barrierSection, lockSection, semaphoreSection, procSection, outputSection);
+        topSplit.setDividerPositions(0.143, 0.286, 0.429, 0.571, 0.714, 0.857);
 
         // middle section: FileTable and PrgState IDs side by side
         SplitPane middleSplit = new SplitPane();
@@ -432,6 +461,31 @@ public class MainWindow {
 
         VBox.setVgrow(semaphoreTableView, Priority.ALWAYS);
         section.getChildren().addAll(label, semaphoreTableView);
+        return section;
+    }
+
+    private VBox createProcSection() {
+        VBox section = new VBox(5);
+
+        Label label = new Label("Procedure Table");
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+
+        procTableView = new TableView<>();
+        procTableView.setPlaceholder(new Label("No procedures defined"));
+
+        TableColumn<ProcEntry, String> signatureCol = new TableColumn<>("Signature");
+        signatureCol.setCellValueFactory(new PropertyValueFactory<>("signature"));
+        signatureCol.setPrefWidth(150);
+
+        TableColumn<ProcEntry, String> bodyCol = new TableColumn<>("Body");
+        bodyCol.setCellValueFactory(new PropertyValueFactory<>("body"));
+        bodyCol.setPrefWidth(200);
+
+        procTableView.getColumns().addAll(signatureCol, bodyCol);
+        procTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        VBox.setVgrow(procTableView, Priority.ALWAYS);
+        section.getChildren().addAll(label, procTableView);
         return section;
     }
 
@@ -623,6 +677,7 @@ public class MainWindow {
             barrierTableView.setItems(FXCollections.observableArrayList());
             lockTableView.setItems(FXCollections.observableArrayList());
             semaphoreTableView.setItems(FXCollections.observableArrayList());
+            procTableView.setItems(FXCollections.observableArrayList());
             outputListView.setItems(FXCollections.observableArrayList());
             fileTableListView.setItems(FXCollections.observableArrayList());
             prgStateIdListView.setItems(FXCollections.observableArrayList());
@@ -678,6 +733,18 @@ public class MainWindow {
             semaphoreEntries.add(new SemaphoreEntry(entry.getKey(), entry.getValue()));
         }
         semaphoreTableView.setItems(semaphoreEntries);
+
+        // (b6) update Procedure Table (shared across all states)
+        Map<String, Pair<List<String>, IStatement>> procTableContent = firstState.getProcTable().getContent();
+        ObservableList<ProcEntry> procEntries = FXCollections.observableArrayList();
+        for (Map.Entry<String, Pair<List<String>, IStatement>> entry : procTableContent.entrySet()) {
+            String procName = entry.getKey();
+            List<String> params = entry.getValue().getFirst();
+            IStatement body = entry.getValue().getSecond();
+            String signature = procName + "(" + String.join(", ", params) + ")";
+            procEntries.add(new ProcEntry(signature, body.toString()));
+        }
+        procTableView.setItems(procEntries);
 
         // (c) update Output (shared across all states)
         List<IValue> output = firstState.getOutput().getOutput();

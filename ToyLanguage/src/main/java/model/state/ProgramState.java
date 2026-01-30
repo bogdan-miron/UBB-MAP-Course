@@ -4,9 +4,11 @@ import model.exception.ExecutionStackException;
 import model.exception.TypeException;
 import model.statement.IStatement;
 
+import java.util.Stack;
+
 public class ProgramState {
     private final IExecutionStack exeStack;
-    private final ISymbolTable symTable;
+    private final Stack<ISymbolTable> symTableStack;
     private final IOutput output;
     private final IFileTable fileTable;
     private final IHeap heap;
@@ -14,19 +16,36 @@ public class ProgramState {
     private final IBarrierTable barrierTable;
     private final ILockTable lockTable;
     private final ISemaphoreTable semaphoreTable;
+    private final IProcTable procTable;
     private final int id;
 
     private static int nextId = 1;
 
-    public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap, ILatchTable latchTable, IBarrierTable barrierTable, ILockTable lockTable, ISemaphoreTable semaphoreTable, IOutput output) {
+    public ProgramState(IExecutionStack exeStack, Stack<ISymbolTable> symTableStack, IFileTable fileTable, IHeap heap, ILatchTable latchTable, IBarrierTable barrierTable, ILockTable lockTable, ISemaphoreTable semaphoreTable, IProcTable procTable, IOutput output) {
         this.exeStack = exeStack;
-        this.symTable = symTable;
+        this.symTableStack = symTableStack;
         this.fileTable = fileTable;
         this.heap = heap;
         this.latchTable = latchTable;
         this.barrierTable = barrierTable;
         this.lockTable = lockTable;
         this.semaphoreTable = semaphoreTable;
+        this.procTable = procTable;
+        this.output = output;
+        this.id = getNextId();
+    }
+
+    public ProgramState(IExecutionStack exeStack, ISymbolTable symTable, IFileTable fileTable, IHeap heap, ILatchTable latchTable, IBarrierTable barrierTable, ILockTable lockTable, ISemaphoreTable semaphoreTable, IOutput output) {
+        this.exeStack = exeStack;
+        this.symTableStack = new Stack<>();
+        this.symTableStack.push(symTable);
+        this.fileTable = fileTable;
+        this.heap = heap;
+        this.latchTable = latchTable;
+        this.barrierTable = barrierTable;
+        this.lockTable = lockTable;
+        this.semaphoreTable = semaphoreTable;
+        this.procTable = new ProcTable();
         this.output = output;
         this.id = getNextId();
     }
@@ -61,7 +80,23 @@ public class ProgramState {
     }
 
     public ISymbolTable getSymTable() {
-        return symTable;
+        return symTableStack.peek();
+    }
+
+    public Stack<ISymbolTable> getSymTableStack() {
+        return symTableStack;
+    }
+
+    public void pushSymTable(ISymbolTable symTable) {
+        symTableStack.push(symTable);
+    }
+
+    public ISymbolTable popSymTable() {
+        return symTableStack.pop();
+    }
+
+    public IProcTable getProcTable() {
+        return procTable;
     }
 
     public IExecutionStack getExeStack() {
@@ -101,7 +136,7 @@ public class ProgramState {
         return "ProgramState{" +
                 "id=" + id +
                 ", exeStack=" + exeStack +
-                ", symTable=" + symTable +
+                ", symTableStack=" + symTableStack +
                 ", output=" + output +
                 ", fileTable=" + fileTable +
                 ", heap=" + heap +
@@ -109,6 +144,7 @@ public class ProgramState {
                 ", barrierTable=" + barrierTable +
                 ", lockTable=" + lockTable +
                 ", semaphoreTable=" + semaphoreTable +
+                ", procTable=" + procTable +
                 '}';
     }
 }

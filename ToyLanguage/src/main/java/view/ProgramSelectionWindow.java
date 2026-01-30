@@ -13,16 +13,20 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.exception.TypeException;
 import model.expression.*;
+import model.state.IProcTable;
+import model.state.ProcTable;
 import model.statement.*;
 import model.type.IntType;
 import model.type.RefType;
 import model.type.StringType;
+import model.util.Pair;
 import model.value.IntValue;
 import model.value.StringValue;
 import repository.IRepository;
 import repository.InMemoryRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProgramSelectionWindow {
@@ -37,12 +41,22 @@ public class ProgramSelectionWindow {
         String description;
         IStatement program;
         String logFile;
+        IProcTable procTable;  // optional procedure table for programs with procedures
 
         ProgramDefinition(String name, String description, IStatement program, String logFile) {
             this.name = name;
             this.description = description;
             this.program = program;
             this.logFile = logFile;
+            this.procTable = null;
+        }
+
+        ProgramDefinition(String name, String description, IStatement program, String logFile, IProcTable procTable) {
+            this.name = name;
+            this.description = description;
+            this.program = program;
+            this.logFile = logFile;
+            this.procTable = procTable;
         }
     }
 
@@ -1124,6 +1138,106 @@ public class ProgramSelectionWindow {
                 "gui_semaphore_log.txt"
         ));
 
+        // Example 20: Procedures
+        // procedure sum(a,b) v=a+b;print(v)
+        // procedure product(a,b) v=a*b;print(v)
+        // main: v=2;w=5;call sum(v*10,w);print(v);fork(call product(v,w);fork(call sum(v,w)))
+        // Expected output: {25, 2, 10, 7}
+
+        // Create procedure table
+        IProcTable procTable = new ProcTable();
+
+        // procedure sum(a,b): v=a+b; print(v)
+        IStatement sumBody = new CompoundStatement(
+                new DeclarationStatement("v", new IntType()),
+                new CompoundStatement(
+                        new AssignmentStatement("v", new ArithmeticExpression(
+                                new VariableExpression("a"),
+                                new VariableExpression("b"),
+                                "+"
+                        )),
+                        new PrintStatement(new VariableExpression("v"))
+                )
+        );
+        procTable.put("sum", new Pair<>(Arrays.asList("a", "b"), sumBody));
+
+        // procedure product(a,b): v=a*b; print(v)
+        IStatement productBody = new CompoundStatement(
+                new DeclarationStatement("v", new IntType()),
+                new CompoundStatement(
+                        new AssignmentStatement("v", new ArithmeticExpression(
+                                new VariableExpression("a"),
+                                new VariableExpression("b"),
+                                "*"
+                        )),
+                        new PrintStatement(new VariableExpression("v"))
+                )
+        );
+        procTable.put("product", new Pair<>(Arrays.asList("a", "b"), productBody));
+
+        // main: v=2; w=5; call sum(v*10, w); print(v); fork(call product(v,w); fork(call sum(v,w)))
+        IStatement ex20 = new CompoundStatement(
+                new DeclarationStatement("v", new IntType()),
+                new CompoundStatement(
+                        new DeclarationStatement("w", new IntType()),
+                        new CompoundStatement(
+                                new AssignmentStatement("v", new ValueExpression(new IntValue(2))),
+                                new CompoundStatement(
+                                        new AssignmentStatement("w", new ValueExpression(new IntValue(5))),
+                                        new CompoundStatement(
+                                                // call sum(v*10, w)
+                                                new CallStatement("sum", Arrays.asList(
+                                                        new ArithmeticExpression(
+                                                                new VariableExpression("v"),
+                                                                new ValueExpression(new IntValue(10)),
+                                                                "*"
+                                                        ),
+                                                        new VariableExpression("w")
+                                                )),
+                                                new CompoundStatement(
+                                                        // print(v)
+                                                        new PrintStatement(new VariableExpression("v")),
+                                                        // fork(call product(v,w); fork(call sum(v,w)))
+                                                        new ForkStatement(
+                                                                new CompoundStatement(
+                                                                        new CallStatement("product", Arrays.asList(
+                                                                                new VariableExpression("v"),
+                                                                                new VariableExpression("w")
+                                                                        )),
+                                                                        new ForkStatement(
+                                                                                new CallStatement("sum", Arrays.asList(
+                                                                                        new VariableExpression("v"),
+                                                                                        new VariableExpression("w")
+                                                                                ))
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+
+        String ex20Description = "Procedures:\n" +
+                "  procedure sum(a,b) { int v; v=a+b; print(v) }\n" +
+                "  procedure product(a,b) { int v; v=a*b; print(v) }\n\n" +
+                "Main program:\n" +
+                "  int v; int w;\n" +
+                "  v=2; w=5;\n" +
+                "  call sum(v*10, w);\n" +
+                "  print(v);\n" +
+                "  fork(call product(v,w); fork(call sum(v,w)))\n\n" +
+                "Expected output: {25, 2, 10, 7}";
+
+        programList.add(new ProgramDefinition(
+                "Example 20: Procedures",
+                ex20Description,
+                ex20,
+                "gui_procedures_log.txt",
+                procTable
+        ));
+
         return programList;
     }
 
@@ -1221,7 +1335,7 @@ public class ProgramSelectionWindow {
         try {
             // create repository and controller
             IRepository repository = new InMemoryRepository(selected.logFile);
-            Controller controller = new Controller(selected.program, repository, true);
+            Controller controller = new Controller(selected.program, repository, true, selected.procTable);
 
             // create and show main window
             MainWindow mainWindow = new MainWindow(controller, selected.name);

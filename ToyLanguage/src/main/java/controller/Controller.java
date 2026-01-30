@@ -6,7 +6,9 @@ import model.exception.TypeException;
 import model.gc.GarbageCollector;
 import model.state.ExecutionStack;
 import model.state.IExecutionStack;
+import model.state.IProcTable;
 import model.state.ISymbolTable;
+import model.state.ProcTable;
 import model.state.ProgramState;
 import model.state.SymbolTable;
 import model.statement.IStatement;
@@ -31,6 +33,10 @@ public class Controller {
     private ExecutorService executor;
 
     public Controller(IStatement program, IRepository repo, boolean logSteps) throws TypeException {
+        this(program, repo, logSteps, null);
+    }
+
+    public Controller(IStatement program, IRepository repo, boolean logSteps, IProcTable procTable) throws TypeException {
         this.logSteps = logSteps;
         this.gc = new GarbageCollector();
         this.repo = repo;
@@ -42,7 +48,26 @@ public class Controller {
         // Create the initial program state
         IExecutionStack exeStack = new ExecutionStack();
         exeStack.push(program);
-        ProgramState initialState = new ProgramState(exeStack, new SymbolTable());
+
+        // Use provided ProcTable or create empty one
+        IProcTable actualProcTable = (procTable != null) ? procTable : new ProcTable();
+
+        // Create initial SymTable stack with one SymbolTable
+        java.util.Stack<ISymbolTable> symTableStack = new java.util.Stack<>();
+        symTableStack.push(new SymbolTable());
+
+        ProgramState initialState = new ProgramState(
+                exeStack,
+                symTableStack,
+                new model.state.FileTable(),
+                new model.state.Heap(),
+                new model.state.LatchTable(),
+                new model.state.BarrierTable(),
+                new model.state.LockTable(),
+                new model.state.SemaphoreTable(),
+                actualProcTable,
+                new model.state.Output()
+        );
 
         // Initialize the repository with a list containing the initial program state
         List<ProgramState> initialPrgList = new ArrayList<>();
@@ -70,7 +95,7 @@ public class Controller {
     }
 
     public void oneStepForAllPrg(List<ProgramState> prgList) throws InterruptedException, RepositoryException {
-        // Initialize executor if null (for GUI single-step execution)
+        // Initialize executor if null - for GUI single-step execution
         if (executor == null) {
             executor = Executors.newFixedThreadPool(2);
         }
